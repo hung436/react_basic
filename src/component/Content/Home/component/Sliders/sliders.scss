@@ -1,0 +1,51 @@
+.slider {
+  border-radius: 19px;
+  @media screen and (max-width: 768px) {
+    .slick-prev:before,
+    .slick-next:before {
+      display: none;
+    }
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 25px;
+    color: #0099a8;
+  }
+  .slider__item {
+    outline: none;
+    overflow: hidden;
+    border-radius: 18px;
+
+    img {
+      width: 100%;
+
+      object-fit: cover;
+    }
+  }
+
+  .slick-arrows {
+    display: none;
+  }
+
+  .slick-dots {
+    bottom: 2px;
+
+    li {
+      width: 30px;
+    }
+
+    .slick-active button {
+      background-color: #fff;
+    }
+
+    button {
+      width: 100%;
+      background-color: #0099a8;
+      height: 6px;
+      padding: 0;
+      &::before {
+        content: unset;
+      }
+    }
+  }
+}
