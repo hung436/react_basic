@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import adminReducer from "../component/AdminPage/component/adminSlice";
+import adminReducer from "../views/AdminPage/adminSlice";
 const rootReducer = {
   admin: adminReducer,
 };

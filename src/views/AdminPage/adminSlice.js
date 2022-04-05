@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginadmin } from "./../../../services/apiService";
-import { StorageKeys } from "./../../../constant/storage-key";
+import { loginadmin } from "./../../services/apiService";
+import { StorageKeys } from "./../../constant/storage-key";
 
 export const login = createAsyncThunk("admin/login", async (payload) => {
   let username = payload.username;
