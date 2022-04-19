@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { adminLogout } from "../adminSlice";
 import { useDispatch } from "react-redux";
@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 
 export default function HeaderAD(props) {
   const dispatch = useDispatch();
+  const [Active, setActive] = useState(0);
   const handleLogout = () => {
     dispatch(adminLogout());
   };
+  const boxs = [0, 1, 2, 3];
   return (
     <div>
       <Navbar bg="primary" variant="dark" expand="lg" sticky="top">
@@ -20,30 +22,34 @@ export default function HeaderAD(props) {
           <Navbar.Collapse id="basic-navbar-nav ">
             <Nav className="me-auto">
               <Nav.Link
+                active={Active === 0}
                 as={Link}
                 to="/admin"
                 onClick={() => {
+                  setActive(0);
                   props.reload();
                 }}
               >
-                {" "}
                 Dashboard
               </Nav.Link>
 
               <Nav.Link
+                active={Active === 1}
                 as={Link}
                 to="/admin/category"
                 onClick={() => {
+                  setActive(1);
                   props.reload();
                 }}
               >
-                {" "}
                 Danh mục
               </Nav.Link>
               <Nav.Link
+                active={Active === 2}
                 as={Link}
                 to="/admin/product"
                 onClick={() => {
+                  setActive(2);
                   props.reload();
                 }}
               >
@@ -51,12 +57,13 @@ export default function HeaderAD(props) {
               </Nav.Link>
               <Nav.Link
                 as={Link}
+                active={Active === 3}
                 to="/admin/user"
                 onClick={() => {
+                  setActive(3);
                   props.reload();
                 }}
               >
-                {" "}
                 Người dùng
               </Nav.Link>
             </Nav>

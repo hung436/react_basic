@@ -1,17 +1,20 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { getAllUsers } from "../../../services/apiService";
-import { Table, Button } from "react-bootstrap";
+import { getAllUsers, deleteUser } from "../../../services/apiService";
+import { Table, Button, ButtonGroup } from "react-bootstrap";
 import ModalUser from "./ModalUser";
+import ModalUserUpdate from "./ModalUserUpdate";
 export default function User(props) {
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowUD, setModalShowUD] = useState(false);
+  const [ID, setID] = useState({});
   const [use, setuse] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchapi = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await getAllUsers();
+      const res = await getAllUsers("ALL");
       // mapData(res.data);
-      setuse(res);
+      setuse(res.users);
     } catch (error) {
       //   toast.error('Error');
       //   dispatch(adminLogout());
@@ -23,16 +26,29 @@ export default function User(props) {
 
   useEffect(() => {
     fetchapi();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.refresh]);
-
+  }, [use]);
+  const DeleteItem = (id) => {
+    if (window.confirm("Delete the item?")) {
+      let res = deleteUser(id);
+      console.log(res);
+    }
+  };
+  const updateUser = (user) => {
+    setModalShowUD(true);
+    setID(user);
+  };
   return (
-    <div className="container">
+    <div className="container-fluid">
       <h1 className="text-center">QUẢN LÝ NGƯỜI DÙNG</h1>
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Thêm
       </Button>
       <ModalUser show={modalShow} onHide={() => setModalShow(false)} />
+      <ModalUserUpdate
+        show={modalShowUD}
+        id={ID}
+        onHide={() => setModalShowUD(false)}
+      />
       <Table striped bordered hover responsive>
         <thead>
           <tr>
@@ -44,6 +60,7 @@ export default function User(props) {
             <th>Email</th>
             <th>Address</th>
             <th>Number Phone</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +75,19 @@ export default function User(props) {
                 <td>{item.email}</td>
                 <td>{item.address}</td>
                 <td>{item.numberphone}</td>
+                <td>
+                  <ButtonGroup>
+                    <Button variant="primary" onClick={() => updateUser(item)}>
+                      Sửa
+                    </Button>
+                    <Button
+                      variant="warning"
+                      onClick={() => DeleteItem(item.id)}
+                    >
+                      Xóa
+                    </Button>
+                  </ButtonGroup>
+                </td>
               </tr>
             );
           })}

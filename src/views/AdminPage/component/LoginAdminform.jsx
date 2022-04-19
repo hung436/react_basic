@@ -1,26 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { Modal, Button, Row, FloatingLabel, Form } from "react-bootstrap";
 export default function LoginAdminform(props) {
-  const [inputValues, setInputValues] = useState({
-    username: "",
-    password: "",
+  // const [inputValues, setInputValues] = useState({
+  //   username: "",
+  //   password: "",
+  // });
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      username: Yup.string().required("Vui lòng nhập trường này"),
+      password: Yup.string()
+        .min(6, "Minimum 6 characters")
+        .required("Vui lòng nhập trường này"),
+    }),
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
   });
+
   const { onSubmit } = props;
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     if (!onSubmit) return;
-    console.log("onSubmit", inputValues);
-    onSubmit(inputValues);
+    // console.log("onSubmit", valu);
+    onSubmit(values);
   };
 
-  let handleChange = (event) => {
-    const { name, value } = event.target;
-    setInputValues({ ...inputValues, [name]: value });
-  };
-  let handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
-  };
   return (
     <>
       <Modal
@@ -36,7 +45,7 @@ export default function LoginAdminform(props) {
         </Modal.Header>
         <Modal.Body>
           <Row className="mb-3">
-            <div>
+            <form onSubmit={formik.handleSubmit}>
               <FloatingLabel
                 controlId="floatingInput"
                 label="UserName"
@@ -45,10 +54,13 @@ export default function LoginAdminform(props) {
                 <Form.Control
                   type="text"
                   placeholder="Ví dụ: ttldhung"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
+                  value={formik.values.username}
                   name="username"
-                  onKeyDown={handleKeyDown}
                 />
+                {formik.errors.username && formik.touched.username && (
+                  <p className="text-danger">{formik.errors.username}</p>
+                )}
               </FloatingLabel>
               <FloatingLabel
                 controlId="floatingInput"
@@ -58,20 +70,22 @@ export default function LoginAdminform(props) {
                 <Form.Control
                   type="password"
                   placeholder="Password"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                   name="password"
-                  onKeyDown={handleKeyDown}
+                  value={formik.values.password}
                 />
+                {formik.errors.password && formik.touched.password && (
+                  <p className="text-danger">{formik.errors.password}</p>
+                )}
               </FloatingLabel>
-            </div>
+              <Modal.Footer>
+                <Button type="submit" variant="success">
+                  Đăng nhập
+                </Button>
+              </Modal.Footer>
+            </form>
           </Row>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="success" onClick={handleSubmit}>
-            {" "}
-            Đăng nhập
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

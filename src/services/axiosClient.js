@@ -7,6 +7,7 @@ import _ from "lodash";
 const instance = axios.create({
   baseURL: "http://localhost:8080/api",
   // withCredentials: true
+  // headers: { "Content-Type": "multipart/form-data" },
 });
 
 instance.interceptors.response.use((response) => {

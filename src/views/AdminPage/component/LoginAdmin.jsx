@@ -4,11 +4,8 @@ import { login } from "../adminSlice";
 import { toast } from "react-toastify";
 import LoginAdminform from "./LoginAdminform";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { StorageKeys } from "./../../../constant/storage-key";
 
 function LoginAdmin(props) {
-  const { showLoading, hideLoading } = props;
-
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
     const action = login(values);
