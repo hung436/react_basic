@@ -5,7 +5,7 @@ import { useRouteMatch } from "react-router-dom";
 import { toast } from "react-toastify";
 import Skeleton from "react-loading-skeleton";
 import { useSelector, useDispatch } from "react-redux";
-import { openModal } from "../../Auth/authSlice";
+import { openModal } from "../../Auth/userSlice";
 import { addToCart } from "../../Cart/cartSlice";
 import {
   getIsFavoriteProduct,
@@ -21,8 +21,8 @@ function ProductDetailPage() {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.user.current);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.current);
 
   useEffect(() => {
     (async function () {
@@ -54,33 +54,33 @@ function ProductDetailPage() {
     setQuantity(newValue);
   };
 
-  // const handleAddToCartClick = () => {
-  //   if (user) {
-  //     //add to cart by user id
-  //     let action = addToCart({
-  //       idProduct: product.id,
-  //       quantity,
-  //       price,
-  //       priceAfterDiscount: price,
-  //       name: product.name,
-  //     });
-  //     if (isPromo && priceAfterDiscount) {
-  //       action = addToCart({
-  //         idProduct: product.id,
-  //         quantity,
-  //         price,
-  //         priceAfterDiscount: priceAfterDiscount,
-  //         name: product.name,
-  //       });
-  //     }
-  //     dispatch(action);
-  //     toast.success("Thêm vào giỏ hàng thành công!");
-  //     return;
-  //   }
-  //   toast.warn("Đăng nhập để thêm vào giỏ hàng!");
-  //   const action = openModal();
-  //   dispatch(action);
-  // };
+  const handleAddToCartClick = () => {
+    if (user) {
+      //add to cart by user id
+      let action = addToCart({
+        idProduct: product.id,
+        quantity,
+        price,
+        priceAfterDiscount: price,
+        name: product.name,
+      });
+      if (isPromo && priceAfterDiscount) {
+        action = addToCart({
+          idProduct: product.id,
+          quantity,
+          price,
+          priceAfterDiscount: priceAfterDiscount,
+          name: product.name,
+        });
+      }
+      dispatch(action);
+      toast.success("Thêm vào giỏ hàng thành công!");
+      return;
+    }
+    toast.warn("Đăng nhập để thêm vào giỏ hàng!");
+    const action = openModal();
+    dispatch(action);
+  };
 
   const isPromo = product?.discount !== "No";
   const price = parseInt(product?.price);
@@ -235,14 +235,16 @@ function ProductDetailPage() {
                 </p>
 
                 <div className="buy row">
-                  <div className="col-lg-4 col-md-4 col-sm-12">
-                    <span>Số Lượng &nbsp;</span>
+                  <div className="col-lg-4 col-md-4 col-sm-12 d-flex">
                     <Quantity
                       count={quantity}
                       onChange={handleQuantityChange}
                     />
                   </div>
-                  <div className="buy__btn col-lg-3 col-md-3 col-sm-6">
+                  <div
+                    className="buy__btn col-lg-3 col-md-3 col-sm-6"
+                    onClick={handleAddToCartClick}
+                  >
                     <i className="fas fa-shopping-cart"></i>
                     <span>Chọn Mua</span>
                   </div>

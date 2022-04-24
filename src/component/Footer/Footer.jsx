@@ -1,184 +1,188 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import bctIcon from './../../assets/images/BCT-icon.svg';
-import expressIcon from './../../assets/images/express-icon.svg';
-import fbIcon from './../../assets/images/fb-icon.svg';
-import ggIcon from './../../assets/images/google-icon.svg';
-import mailIcon from './../../assets/images/mail-icon.svg';
-import percentIcon from './../../assets/images/percent-icon.svg';
-import phanoLinkLogoColor from './../../assets/images/phanolink-logo-color.svg';
-import phoneIcon from './../../assets/images/phone-icon.svg';
-import presentIcon from './../../assets/images/present-icon.svg';
-import transactionIcon from './../../assets/images/transaction-icon.svg';
-import ytIcon from './../../assets/images/youtube-icon.svg';
-import zaloIcon from './../../assets/images/zalo-icon.svg';
-import "./Footer.scss"
+import React from "react";
+import { Link } from "react-router-dom";
+import bctIcon from "./../../assets/images/BCT-icon.svg";
+import expressIcon from "./../../assets/images/express-icon.svg";
+import fbIcon from "./../../assets/images/fb-icon.svg";
+import ggIcon from "./../../assets/images/google-icon.svg";
+import mailIcon from "./../../assets/images/mail-icon.svg";
+import percentIcon from "./../../assets/images/percent-icon.svg";
+import phanoLinkLogoColor from "./../../assets/images/phanolink-logo-color.svg";
+import phoneIcon from "./../../assets/images/phone-icon.svg";
+import presentIcon from "./../../assets/images/present-icon.svg";
+import transactionIcon from "./../../assets/images/transaction-icon.svg";
+import ytIcon from "./../../assets/images/youtube-icon.svg";
+import zaloIcon from "./../../assets/images/zalo-icon.svg";
+import "./Footer.scss";
 export default function Footer() {
   return (
     <div>
-       <footer>
-      <div className='container footer__commit'>
-        <div className='commit__block percent'>
-          <img src={percentIcon} alt='percent logo' />
-          <p>Sản phẩm chính hãng</p>
+      <footer>
+        <div className="container footer__commit row">
+          <div className="commit__block percent">
+            <img
+              src={percentIcon}
+              className="img-thumbnail"
+              alt="percent logo"
+            />
+            <p>Sản phẩm chính hãng</p>
+          </div>
+          <div className="commit__block express">
+            <img src={expressIcon} alt="express logo" />
+            <p>Giao hàng toàn quốc</p>
+          </div>
+          <div className="commit__block transaction">
+            <img src={transactionIcon} alt="transaction logo" />
+            <p>Thanh toán linh hoạt</p>
+          </div>
+          <div className="commit__block present">
+            <img src={presentIcon} alt="gift logo" />
+            <p>Tích điểm đổi quà</p>
+          </div>
         </div>
-        <div className='commit__block express'>
-          <img src={expressIcon} alt='express logo' />
-          <p>Giao hàng toàn quốc</p>
-        </div>
-        <div className='commit__block transaction'>
-          <img src={transactionIcon} alt='transaction logo' />
-          <p>Thanh toán linh hoạt</p>
-        </div>
-        <div className='commit__block present'>
-          <img src={presentIcon} alt='gift logo' />
-          <p>Tích điểm đổi quà</p>
-        </div>
-      </div>
-      <div className='footer__contact'>
-        <div className='container'>
-          <div className='wrap'>
-            <div className='contact__item phone'>
-              <Link to='/' className='item__detail'>
-                <img src={phoneIcon} alt='phone logo' />
-                <p>
-                  Gọi ngay <strong>1800 6768</strong> (tư vấn miễn phí)
-                </p>
-              </Link>
-            </div>
-            <div className='contact__item input'>
-              <form className='item__form' method='get'>
-                <button type='submit'>
-                  <img src={mailIcon} alt='mail logo' />
-                </button>
-                <input
-                  type='text'
-                  placeholder='Nhập email để nhận mã giảm giá'
-                  required=''
-                />
-              </form>
+        <div className="footer__contact">
+          <div className="container">
+            <div className="wrap">
+              <div className="contact__item phone">
+                <Link to="/" className="item__detail">
+                  <img src={phoneIcon} alt="phone logo" />
+                  <p>
+                    Gọi ngay <strong>1800 6768</strong> (tư vấn miễn phí)
+                  </p>
+                </Link>
+              </div>
+              <div className="contact__item input">
+                <form className="item__form" method="get">
+                  <button type="submit">
+                    <img src={mailIcon} alt="mail logo" />
+                  </button>
+                  <input
+                    type="text"
+                    placeholder="Nhập email để nhận mã giảm giá"
+                    required=""
+                  />
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className='container footer__info'>
-        <div className='info__content'>
-          <div className='content__locate'>
-            <img src={phanoLinkLogoColor} alt='brand color logo' />
-            <div className='locate__address'>
-              <p>CÔNG TY CỔ PHẦN DƯỢC PHẨM PHANO</p>
-              <Link to='/'>
-                Địa chỉ: 01 Võ Văn Ngân, P.Linh Chiểu, TP.Thủ Đức, TP.HCM
-              </Link>
+        <div className="container footer__info">
+          <div className="info__content">
+            <div className="content__locate">
+              <img src={phanoLinkLogoColor} alt="brand color logo" />
+              <div className="locate__address">
+                <p>CÔNG TY CỔ PHẦN DƯỢC PHẨM PHANO</p>
+                <Link to="/">
+                  Địa chỉ: 01 Võ Văn Ngân, P.Linh Chiểu, TP.Thủ Đức, TP.HCM
+                </Link>
+              </div>
+              <div className="locate__contact">
+                <p>MST: 0304860663</p>
+                <Link to="/">Email: nguyenhuu220800@gmail.com</Link>
+                <Link to="/">Tel: 0379 339 693</Link>
+              </div>
             </div>
-            <div className='locate__contact'>
-              <p>MST: 0304860663</p>
-              <Link to='/'>Email: nguyenhuu220800@gmail.com</Link>
-              <Link to='/'>Tel: 0379 339 693</Link>
+            <div className="content__assist">
+              <h4>HỖ TRỢ KHÁCH HÀNG</h4>
+              <ul className="assist__list">
+                <li>
+                  <Link to="/">Chính sách đổi trả</Link>
+                </li>
+                <li>
+                  <Link to="/">Chính sách giao hàng</Link>
+                </li>
+                <li>
+                  <Link to="/">Chính sách bảo mật</Link>
+                </li>
+                <li>
+                  <Link to="/">Hướng dẫn thanh toán</Link>
+                </li>
+                <li>
+                  <Link to="/">Hướng dẫn đặt hàng</Link>
+                </li>
+                <li>
+                  <Link to="/">Giải quyết phản hồi</Link>
+                </li>
+                <li>
+                  <Link to="/">Giấy phép kinh doanh</Link>
+                </li>
+              </ul>
             </div>
-          </div>
-          <div className='content__assist'>
-            <h4>HỖ TRỢ KHÁCH HÀNG</h4>
-            <ul className='assist__list'>
-              <li>
-                <Link to='/'>Chính sách đổi trả</Link>
-              </li>
-              <li>
-                <Link to='/'>Chính sách giao hàng</Link>
-              </li>
-              <li>
-                <Link to='/'>Chính sách bảo mật</Link>
-              </li>
-              <li>
-                <Link to='/'>Hướng dẫn thanh toán</Link>
-              </li>
-              <li>
-                <Link to='/'>Hướng dẫn đặt hàng</Link>
-              </li>
-              <li>
-                <Link to='/'>Giải quyết phản hồi</Link>
-              </li>
-              <li>
-                <Link to='/'>Giấy phép kinh doanh</Link>
-              </li>
-            </ul>
-          </div>
-          <div className='content__account'>
-            <h4>TÀI KHOẢN</h4>
-            <ul className='account__list'>
-              <li>
+            <div className="content__account">
+              <h4>TÀI KHOẢN</h4>
+              <ul className="account__list">
+                <li>
+                  <Link
+                    // onClick={(e) => {
+                    //   e.preventDefault();
+                    //   const action = openModal();
+                    //   dispatch(action);
+                    // }}
+                    to="/"
+                  >
+                    Đăng ký
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    // onClick={(e) => {
+                    //   e.preventDefault();
+                    //   const action = openModal();
+                    //   dispatch(action);
+                    // }}
+                    to="/"
+                  >
+                    Đăng nhập
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    // onClick={(e) => {
+                    //   if (!user) {
+                    //     e.preventDefault();
+                    //     toast.warn('Vui lòng đăng nhập!');
+                    //     const action = openModal();
+                    //     dispatch(action);
+                    //   }
+                    // }}
+                    to="/user/order?page=1&with=address,order_details.product.images&perPage=6"
+                  >
+                    Kiểm tra đơn hàng
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="content__social">
+              <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+              <div className="social__list">
+                <Link to="/">
+                  <img src={zaloIcon} alt="zalo logo" />
+                </Link>
                 <Link
                   // onClick={(e) => {
                   //   e.preventDefault();
-                  //   const action = openModal();
-                  //   dispatch(action);
+                  //   window.open('https://www.facebook.com/garyhuu2000', '_blank');
                   // }}
-                  to='/'
+                  to="/"
                 >
-                  Đăng ký
+                  <img src={fbIcon} alt="facebook logo" />
                 </Link>
-              </li>
-              <li>
-                <Link
-                  // onClick={(e) => {
-                  //   e.preventDefault();
-                  //   const action = openModal();
-                  //   dispatch(action);
-                  // }}
-                  to='/'
-                >
-                  Đăng nhập
+                <Link to="/">
+                  <img src={ggIcon} alt="google logo" />
                 </Link>
-              </li>
-              <li>
-                <Link
-                  // onClick={(e) => {
-                  //   if (!user) {
-                  //     e.preventDefault();
-                  //     toast.warn('Vui lòng đăng nhập!');
-                  //     const action = openModal();
-                  //     dispatch(action);
-                  //   }
-                  // }}
-                  to='/user/order?page=1&with=address,order_details.product.images&perPage=6'
-                >
-                  Kiểm tra đơn hàng
+                <Link to="/">
+                  <img src={ytIcon} alt="youtube logo" />
                 </Link>
-              </li>
-            </ul>
-          </div>
-          <div className='content__social'>
-            <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
-            <div className='social__list'>
-              <Link to='/'>
-                <img src={zaloIcon} alt='zalo logo' />
-              </Link>
-              <Link
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   window.open('https://www.facebook.com/garyhuu2000', '_blank');
-                // }}
-                to='/'
-              >
-                <img src={fbIcon} alt='facebook logo' />
-              </Link>
-              <Link to='/'>
-                <img src={ggIcon} alt='google logo' />
-              </Link>
-              <Link to='/'>
-                <img src={ytIcon} alt='youtube logo' />
-              </Link>
+              </div>
             </div>
           </div>
+          <div className="info__license">
+            <p>
+              <span>© 2019</span> - Bản quyền thuộc về Công Ty Dược Phẩm Phano
+            </p>
+            <img src={bctIcon} alt="BCT logo" />
+          </div>
         </div>
-        <div className='info__license'>
-          <p>
-            <span>© 2019</span> - Bản quyền thuộc về Công Ty Dược Phẩm Phano
-          </p>
-          <img src={bctIcon} alt='BCT logo' />
-        </div>
-      </div>
-    </footer>
+      </footer>
     </div>
-  )
+  );
 }

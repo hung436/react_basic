@@ -1,11 +1,11 @@
 
 
 .hot-promotion {
-  background-color: #ddcfcf;
-  padding-top: 12px;
+  background-color: rgb(242, 238, 238);
+  padding: 12px 0;
 
   &__content {
-    background-color: rgb(22, 205, 86);
+    background-color: #fff;
     padding-bottom: 20px;
 
     .hot-promotion__top {
@@ -81,15 +81,29 @@
       justify-content: space-between;
       .slick-prev:before,
       .slick-next:before {
-        font-size: 35px !important;
+       
         color: #f80b0b;
       }
       .slick-arrow {
         &::before {
+          
           font-size: 23px;
         }
       }
-
+@media screen and (max-width:768px) {
+  .slick-prev:before,
+      .slick-next:before {
+       display: none;
+        color: #f80b0b;
+      }
+  .slick-arrow {
+    &::before {
+      display:none !important;
+      font-size: 23px;
+    }
+  }
+  
+}
       .slick-dots {
         bottom: -10px;
       }

@@ -10,7 +10,7 @@ import { Switch, Route } from "react-router";
 
 function App() {
   return (
-    <>
+    <div className="app">
       <Switch>
         <Route path="/admin" component={AdminPage} />
         <Route>
@@ -27,7 +27,7 @@ function App() {
           <Footer />
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 

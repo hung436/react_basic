@@ -1,7 +1,7 @@
 footer {
-  @breakpoint-custom-max (1024px) {
-    display: none;
-  }
+  // @breakpoint-custom-max (1024px) {
+  //   display: none;
+  // }
 
   .footer__commit {
     display: flex;
@@ -60,7 +60,7 @@ footer {
 
     .wrap {
       display: flex;
-
+        flex-wrap: wrap;
       .contact__item {
         padding: 0 20px;
         height: 45px;

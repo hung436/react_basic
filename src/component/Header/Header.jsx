@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigate from "./component/Navigate";
+import ModalLogin from "../../views/Auth/ModalLogin";
 import "./Header.scss";
 import HeaderLogo from "../../assets/images/header-logo.svg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./Header.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../views/Auth/userSlice";
 const Header = () => {
+  const [show, setShow] = useState(false);
+  const user = useSelector((state) => state.user.current);
+  console.log("user", user);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const dispatch = useDispatch();
+  const logoutuser = () => {
+    dispatch(logout());
+  };
   return (
     <>
       <header>
@@ -38,12 +50,27 @@ const Header = () => {
               </div>
               <p>Giỏ hàng</p>
             </Link>
-            <div id="h_login" className="col-12 col-lg-2 col-md-2 col-sm-12">
-              <i className="fa-solid fa-arrow-right-to-bracket"></i>
-            </div>
+            {user ? (
+              <Link
+                id="h_login"
+                className="col-12 col-lg-2 col-md-2 col-sm-12"
+                onClick={logoutuser}
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link
+                id="h_login"
+                className="col-12 col-lg-2 col-md-2 col-sm-12"
+                onClick={handleShow}
+              >
+                <i className="fa-solid fa-arrow-right-to-bracket"></i>
+              </Link>
+            )}
           </div>
         </div>
       </header>
+      <ModalLogin show={show} modalClose={handleClose} />
       <Navigate />
     </>
   );

@@ -10,16 +10,20 @@ export const register = createAsyncThunk("auth/register", async (payload) => {
 
 export const login = createAsyncThunk("auth/login", async (payload) => {
   //call API to login
-  const { data } = await loginuser(payload);
-  const user = {
-    name: data.user_name,
-    id: data.user_id,
-    access_token: data.access_token,
-    addressId: null,
-  };
-  //save data to local storage
-  localStorage.setItem(StorageKeys.TOKEN, data.access_token);
-  localStorage.setItem(StorageKeys.USER, JSON.stringify(user));
+  const data = await loginuser(payload);
+
+  console.log(data);
+  if (data.error === 0) {
+    const user = {
+      name: data.username,
+      id: data.userID,
+      access_token: data.accessToken,
+      addressId: null,
+    };
+    //save data to local storage
+    localStorage.setItem(StorageKeys.TOKEN, data.accessToken);
+    localStorage.setItem(StorageKeys.USER, JSON.stringify(user));
+  }
   return data;
 });
 

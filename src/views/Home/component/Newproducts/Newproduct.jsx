@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { getProduct } from "../../../../services/productService";
-import iconHotPromotion from "../../../../assets/images/icon-hot-promotion.svg";
-import Skeleton from "react-loading-skeleton";
+import iconHotPromotion from "../../../../assets/images/icon-feature-product.svg";
+// import Skeleton from "react-loading-skeleton";
 import { useInView } from "react-intersection-observer";
-import "./Hotproducts.scss";
-function Hotproduct() {
-  const [hotPromoList, setHotPromoList] = useState([]);
+import "../Hotproducts/Hotproducts.scss";
+function Newproduct() {
+  const [newPromoList, setNewPromoList] = useState([]);
   const [loading, setLoading] = useState(true);
   const mouted = useRef(true);
   const isLoaded = useRef(false);
@@ -35,7 +35,7 @@ function Hotproduct() {
       const res = await getProduct(0);
       console.log(res);
       let list = res.data.rows;
-      if (mouted.current) setHotPromoList(list);
+      if (mouted.current) setNewPromoList(list);
     };
     fetchapi();
     // setLoading(false);
@@ -53,7 +53,7 @@ function Hotproduct() {
           <div className="hot-promotion__top">
             <div className="hot-promotion__title">
               <img src={iconHotPromotion} alt="" />
-              <span>Khuyễn Mãi Hot</span>
+              <span>Sản phẩm mới</span>
             </div>
             <Link to="/product?sort-by-sale=true" className="see-all">
               Xem tất cả &nbsp; &gt;
@@ -67,7 +67,7 @@ function Hotproduct() {
             /> */}
           {/* ) : ( */}
           <Slider {...settings} className="hot-promotion__list  text-center">
-            {hotPromoList.map((item) => (
+            {newPromoList.map((item) => (
               <>
                 <Link
                   key={item.id}
@@ -91,4 +91,4 @@ function Hotproduct() {
   );
 }
 
-export default Hotproduct;
+export default Newproduct;
