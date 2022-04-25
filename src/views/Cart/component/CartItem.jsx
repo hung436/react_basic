@@ -39,57 +39,6 @@ function CartItem({ item, onChange, hideLoading, showLoading }) {
   }, [item.idProduct]);
 
   return (
-    // <div className="item">
-    //   <Link to={`/product/${item.idProduct}`}>
-    //     <img
-    //       className="mw-25"
-    //       src={"http://localhost:8080/uploads/" + product.image_link}
-    //       alt=""
-    //     />
-    //   </Link>
-    //   <div className="item__info">
-    //     <div className="description">
-    //       <Fragment>
-    //         <p>{product.name}</p>
-    //         <span className="btn btn-warning" onClick={handleButtonDeleteClick}>
-    //           Xóa
-    //         </span>
-    //       </Fragment>
-    //     </div>
-    //     <div className="price">
-    //       <Fragment>
-    //         <p className="price__new">
-    //           {isPromo && priceAfterDiscount
-    //             ? (priceAfterDiscount * item.quantity).toLocaleString("it-IT", {
-    //                 style: "currency",
-    //                 currency: "VND",
-    //               })
-    //             : price * item.quantity
-    //             ? (price * item.quantity).toLocaleString("it-IT", {
-    //                 style: "currency",
-    //                 currency: "VND",
-    //               })
-    //             : ""}
-    //           &nbsp;
-    //         </p>
-    //         {product.discount !== "No" && (
-    //           <span className="price__discount">-{product.discount}</span>
-    //         )}
-    //         {isPromo && (
-    //           <span className="price__old">
-    //             {(price * item.quantity).toLocaleString("it-IT", {
-    //               style: "currency",
-    //               currency: "VND",
-    //             })}
-    //             &nbsp;
-    //           </span>
-    //         )}
-    //       </Fragment>
-    //     </div>
-
-    //     <Quantity count={item.quantity} onChange={handleQuantityChange} />
-    //   </div>
-    // </div>
     <>
       <hr className="my-4" />
       <div className="row mb-4 d-flex justify-content-between align-items-center">

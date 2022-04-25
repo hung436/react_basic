@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navigate from "./component/Navigate";
 import ModalLogin from "../../views/Auth/ModalLogin";
 import "./Header.scss";
@@ -65,13 +65,26 @@ const Header = () => {
                 className="col-12 col-lg-2 col-md-2 col-sm-12"
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item className="text-primary" disabled>
-                  {" Xin chào " + user.name}
+                <NavDropdown.Item className="text-dark bg-warning" disabled>
+                  Xin chào
+                  <span className="text-primary">
+                    {" "}
+                    {" '" + user.name + "'"}
+                  </span>
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  className="text-success"
+                  to="/user/order"
+                >
+                  Đơn hàng của bạn
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/user">
-                  Thông tin
+                  Thông tin cá nhân
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Cài đặt</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/user/local">
+                  Địa chỉ giao hàng
+                </NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() => toast.warning("Tính năng đang phất triển")}
                 >

@@ -5,6 +5,12 @@ const loginuser = (data) => {
     password: data.password,
   });
 };
+const getOrders = () => {
+  return axios.get(`/getorder`);
+};
+const getOrderDetail = (id) => {
+  return axios.get("/getorderdetail", { params: { id: id } });
+};
 const registeruser = () => {};
 const getIsFavoriteProduct = (id) => {};
 const addFavorites = () => {};
@@ -25,4 +31,6 @@ export {
   changeAddress,
   getAddress,
   order,
+  getOrders,
+  getOrderDetail,
 };

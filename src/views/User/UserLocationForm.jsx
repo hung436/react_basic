@@ -19,8 +19,6 @@ export default function UserLocationForm(props) {
     ward: yup.string().required("Vui lòng điền vào đây"),
     street_name: yup.string().required("Vui lòng điền vào đây"),
     district: yup.string().required("Vui lòng điền vào đây"),
-    numberphone: yup.number().required("Nhập đúng định dạng"),
-    terms: yup.bool().required().oneOf([true], "Terms must be accepted"),
   });
 
   useEffect(() => {
@@ -52,7 +50,6 @@ export default function UserLocationForm(props) {
           city: dc.city,
           email: dc.email,
           numberphone: dc.numberphone,
-          terms: false,
         }}
       >
         {({
@@ -127,6 +124,7 @@ export default function UserLocationForm(props) {
                   value={values.numberphone}
                   onChange={handleChange}
                   isInvalid={!!errors.numberphone}
+                  disabled
                 />
 
                 <Form.Control.Feedback type="invalid">
@@ -194,18 +192,7 @@ export default function UserLocationForm(props) {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Form.Group className="mb-3">
-              <Form.Check
-                required
-                name="terms"
-                label="Agree to terms and conditions"
-                onChange={handleChange}
-                isInvalid={!!errors.terms}
-                feedback={errors.terms}
-                feedbackType="invalid"
-                id="validationFormik0"
-              />
-            </Form.Group>
+
             <Button type="submit">CẬP NHẬT THAY ĐỔI</Button>
           </Form>
         )}

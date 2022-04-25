@@ -18,7 +18,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const URLS = ["/getaddress", "/order"];
+    const URLS = ["/getaddress", "/order", "/getorder", "/getorderdetail"];
 
     const dynamicURL = ["/user/favorites/"];
     const dynamicURLNeedToken = dynamicURL.some((item) => {

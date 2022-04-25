@@ -41,7 +41,6 @@ function CartTotal({ showLoading, hideLoading }) {
       user.addressId !== undefined &&
       cart
     ) {
-      alert("dd");
       const cartTotal = cart.map((item) => {
         const i = { ...item };
         if (i.priceAfterDiscount) delete i.priceAfterDiscount;
@@ -77,68 +76,6 @@ function CartTotal({ showLoading, hideLoading }) {
   };
 
   return (
-    // <>
-    //   {isSuccess || isConfirm || (
-    //     <div className='discount__code'>
-    //       <h2>Mã Giảm Giá</h2>
-    //       <form action=''>
-    //         <input type='text' placeholder='Nhập mã giảm giá....' />
-    //         <button>ÁP DỤNG</button>
-    //       </form>
-    //     </div>
-    //   )}
-
-    //   <div className='checkout'>
-    //     <p>
-    //       <span>Tạm Tính:</span>
-    //       <span>
-    //         {price &&
-    //           (price + (discount || 0)).toLocaleString('it-IT', {
-    //             style: 'currency',
-    //             currency: 'VND',
-    //           })}
-    //       </span>
-    //     </p>
-    //     <p>
-    //       <span>Giảm Giá:</span>{' '}
-    //       <span>
-    //         {discount &&
-    //           discount.toLocaleString('it-IT', {
-    //             style: 'currency',
-    //             currency: 'VND',
-    //           })}
-    //       </span>
-    //     </p>
-    //     <p>
-    //       <span>Thành Tiền:</span>{' '}
-    //       <span>
-    //         {price &&
-    //           price.toLocaleString('it-IT', {
-    //             style: 'currency',
-    //             currency: 'VND',
-    //           })}
-    //       </span>
-    //     </p>
-    //     <span>(Đã bao gồm VAT nếu có)</span>
-    //   </div>
-
-    //   {isSuccess || (
-    //     <>
-    //       <button onClick={handleClick}>
-    //         {!isConfirm ? 'TIẾN HÀNH ĐẶT HÀNG' : 'XÁC NHẬN THANH TOÁN'}
-    //       </button>
-    //       <button
-    //         className='back'
-    //         onClick={() => {
-    //           history.goBack();
-    //         }}
-    //       >
-    //         QUAY LẠI
-    //       </button>
-    //     </>
-    //   )}
-    // </>
-
     <div className="p-5">
       <h3 className="fw-bold mb-5 mt-2 pt-1">Tổng kết</h3>
       <hr className="my-4" />
