@@ -30,7 +30,6 @@ export default function User(props) {
   const DeleteItem = (id) => {
     if (window.confirm("Delete the item?")) {
       let res = deleteUser(id);
-      console.log(res);
     }
   };
   const updateUser = (user) => {

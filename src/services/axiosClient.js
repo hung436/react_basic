@@ -70,14 +70,14 @@ axiosClient.interceptors.response.use(
       config._retry = true;
       try {
         const token = localStorage.getItem(StorageKeys.TOKEN);
-        console.log(token);
+
         const res = await axios.post("https://localhost:8080/api/refresh", {
           headers: {
             authorization: `Bearer ${token}`,
           },
         });
         const dispatch = useDispatch();
-        console.log(res.data.access_token);
+
         const action = refreshToken(res.data.access_token);
         dispatch(action);
         return axiosClient(config);

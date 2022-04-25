@@ -62,9 +62,8 @@ export const cartSlice = createSlice({
       state.cartItems = null;
     },
     paymentSuccess: (state) => {
-      // console.log(state);
       state.cartItems = [];
-      // console.log(state?.userId);
+
       localStorage.removeItem(getCartNameById(state?.userId));
     },
   },

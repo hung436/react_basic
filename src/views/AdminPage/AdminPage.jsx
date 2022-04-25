@@ -14,7 +14,7 @@ export default function AdminPage() {
     setrefesh((prev) => prev + 1);
   };
   const admin = useSelector((state) => state.admin.current);
-  console.log("admin", admin);
+
   if (!admin) return <LoginAdmin />;
   return (
     <>

@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navigate from "./component/Navigate";
 import ModalLogin from "../../views/Auth/ModalLogin";
 import "./Header.scss";
+import { NavDropdown } from "react-bootstrap";
 import HeaderLogo from "../../assets/images/header-logo.svg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../views/Auth/userSlice";
+import { toast } from "react-toastify";
 const Header = () => {
   const [show, setShow] = useState(false);
+  const [users, setUser] = useState({});
+
   const user = useSelector((state) => state.user.current);
-  console.log("user", user);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
@@ -51,20 +55,39 @@ const Header = () => {
               <p>Giỏ hàng</p>
             </Link>
             {user ? (
-              <Link
-                id="h_login"
+              <NavDropdown
+                title={
+                  <>
+                    <i className="fa-solid fa-circle-user fs-3 text-light"></i>
+                  </>
+                }
                 className="col-12 col-lg-2 col-md-2 col-sm-12"
-                onClick={logoutuser}
+                id="basic-nav-dropdown"
               >
-                Logout
-              </Link>
+                <NavDropdown.Item className="text-primary" disabled>
+                  {" Xin chào " + user.name}
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/user">
+                  Thông tin
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Cài đặt</NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => toast.warning("Tính năng đang phất triển")}
+                >
+                  Language
+                </NavDropdown.Item>
+                {/* <NavDropdown.Divider /> */}
+                <NavDropdown.Item onClick={logoutuser}>
+                  Đăng xuất
+                </NavDropdown.Item>
+              </NavDropdown>
             ) : (
               <Link
-                id="h_login"
                 className="col-12 col-lg-2 col-md-2 col-sm-12"
                 onClick={handleShow}
               >
-                <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                {/* <i className="fa-solid fa-circle-user "></i> */}
+                <i className="fa-solid fa-arrow-right-to-bracket fs-3 text-light"></i>
               </Link>
             )}
           </div>

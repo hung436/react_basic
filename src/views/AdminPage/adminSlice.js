@@ -7,7 +7,7 @@ export const login = createAsyncThunk("admin/login", async (payload) => {
   let password = payload.password;
   try {
     const data = await loginadmin(username, password);
-    console.log("data", data);
+
     if (data.errorCode === 0) {
       localStorage.setItem(StorageKeys.ADMIN, JSON.stringify(data.user));
     }
@@ -47,7 +47,7 @@ export const userSlice = createSlice({
   extraReducers: {
     [login.fulfilled]: (state, action) => {
       if (action.payload.errorCode === 0) {
-        state.current = action.payload;
+        state.current = action.payload.user;
       } else {
         state.current = null;
       }

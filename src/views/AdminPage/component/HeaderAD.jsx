@@ -10,7 +10,6 @@ export default function HeaderAD(props) {
   const handleLogout = () => {
     dispatch(adminLogout());
   };
-  const boxs = [0, 1, 2, 3];
   return (
     <div>
       <Navbar bg="primary" variant="dark" expand="lg" sticky="top">

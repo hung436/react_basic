@@ -12,7 +12,6 @@ export const login = createAsyncThunk("auth/login", async (payload) => {
   //call API to login
   const data = await loginuser(payload);
 
-  console.log(data);
   if (data.error === 0) {
     const user = {
       name: data.username,
@@ -21,8 +20,8 @@ export const login = createAsyncThunk("auth/login", async (payload) => {
       addressId: null,
     };
     //save data to local storage
-    localStorage.setItem(StorageKeys.TOKEN, data.accessToken);
-    localStorage.setItem(StorageKeys.USER, JSON.stringify(user));
+    await localStorage.setItem(StorageKeys.TOKEN, data.accessToken);
+    await localStorage.setItem(StorageKeys.USER, JSON.stringify(user));
   }
   return data;
 });
@@ -68,9 +67,10 @@ export const userSlice = createSlice({
   extraReducers: {
     [login.fulfilled]: (state, action) => {
       const user = {
-        name: action.payload.user_name,
-        id: action.payload.user_id,
-        access_token: action.payload.access_token,
+        name: action.payload.username,
+
+        id: action.payload.userID,
+        access_token: action.payload.accessToken,
       };
       state.current = user;
     },

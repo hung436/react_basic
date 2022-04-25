@@ -22,7 +22,7 @@ export default function Product(props) {
   const handleSubmit = async (formData) => {
     try {
       const res = await createProduct(formData);
-      console.log(res);
+
       if (res.errorCode === 0) {
         toast.success("Thêm sản phẩm thành công!");
       } else if (res.errorCode === 1) {
@@ -35,7 +35,7 @@ export default function Product(props) {
   const handleUpdate = async (formData) => {
     try {
       const res = await updateProduct(formData);
-      console.log("update", res);
+
       if (res.errorCode === 0) {
         toast.success("Sửa sản phẩm thành công!");
       }

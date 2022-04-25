@@ -33,7 +33,7 @@ function Newproduct() {
     //     setLoading(true);
     const fetchapi = async () => {
       const res = await getProduct(0);
-      console.log(res);
+
       let list = res.data.rows;
       if (mouted.current) setNewPromoList(list);
     };

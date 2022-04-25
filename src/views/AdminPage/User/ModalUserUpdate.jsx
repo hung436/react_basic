@@ -9,7 +9,7 @@ export default function ModalUserUpdate(props) {
   const { id } = props;
   const handleSubmit = async (values) => {
     values = { ...values, id: id.id };
-    console.log(values);
+
     let mes = await updateUser(values);
 
     if (mes.errCode === 0) {

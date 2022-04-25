@@ -25,10 +25,9 @@ export default function ModalProduct(props) {
     };
   }, [imgProduct]);
   const handleSubmit = (values) => {
-    console.log("value", values);
     const file =
       imgRef.current && imgRef.current.files && imgRef.current.files[0];
-    console.log("img: ", imgRef.current.files[0]);
+
     if (!file) {
       setErrorImage("Please enter product image");
       return;

@@ -11,7 +11,7 @@ function LoginAdmin(props) {
     const action = login(values);
     let resultAction = await dispatch(action);
     resultAction = unwrapResult(resultAction);
-    console.log("resultAction", resultAction);
+
     if (resultAction.errorCode === 0) {
       toast.success("Đặng nhập thành công!");
     } else {

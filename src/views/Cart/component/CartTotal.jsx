@@ -51,7 +51,7 @@ function CartTotal({ showLoading, hideLoading }) {
         }
         return i;
       });
-      console.log(cartTotal);
+
       const dataSend = {
         total: price,
         payment_method: "Cash on Delivery",
@@ -59,10 +59,10 @@ function CartTotal({ showLoading, hideLoading }) {
         address_id: user.addressId,
         products: [...cartTotal],
       };
-      console.log("Total: ", dataSend);
+
       try {
         const rs = await order(dataSend);
-        if (rs) {
+        if (rs.errorCode === 0) {
           const action = paymentSuccess();
           dispatch(action);
           toast.success("Đặt hàng thành công!");

@@ -4,6 +4,7 @@ import Footer from "../component/Footer/Footer";
 import Home from "./Home/index.jsx";
 import Cart from "./Cart";
 import Product from "./products";
+import User from "./User";
 import NotFound from "./NotFound";
 import AdminPage from "./AdminPage/AdminPage";
 import { Switch, Route } from "react-router";
@@ -20,7 +21,7 @@ function App() {
               <Route path="/" exact component={Home} />
               <Route path="/cart" component={Cart} />
               <Route path="/product" component={Product} />
-              {/* <Route path="/user" component={User} /> */}
+              <Route path="/user" component={User} />
               <Route component={NotFound} />
             </Switch>
           </main>

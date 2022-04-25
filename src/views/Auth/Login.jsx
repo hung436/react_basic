@@ -22,7 +22,7 @@ export default function Login(props) {
   const { onSubmit } = props;
   const handleSubmit = (values) => {
     if (!onSubmit) return;
-    // console.log("onSubmit", valu);
+
     onSubmit(values);
   };
 

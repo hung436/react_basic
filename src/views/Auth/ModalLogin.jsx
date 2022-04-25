@@ -8,7 +8,6 @@ import { unwrapResult } from "@reduxjs/toolkit";
 function ModalLogin(props) {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
-    console.log(values);
     const action = login(values);
     let data = await dispatch(action);
     data = await unwrapResult(data);

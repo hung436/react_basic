@@ -3,10 +3,12 @@ import { useRouteMatch, Redirect, Switch, Route } from "react-router-dom";
 import CartProductList from "./component/CartProductList";
 import CartTotal from "./component/CartTotal";
 import CartConfirm from "./component/CartConfirm";
+import CartSuccess from "./component/CartSuccess";
+import CartEmpty from "./component/CartEmpty";
 import { cartItemsCountSelector } from "./selector";
 export default function Cart() {
   const countCart = useSelector(cartItemsCountSelector);
-  console.log(countCart);
+
   const isLoggedIn = useSelector((state) => state.user.current);
   const { url } = useRouteMatch();
   return (
@@ -29,6 +31,8 @@ export default function Cart() {
                         <Route path={`${url}`} exact>
                           {!isLoggedIn ? (
                             <Redirect to="/" />
+                          ) : countCart <= 0 || countCart === undefined ? (
+                            <CartEmpty />
                           ) : (
                             <CartProductList count={countCart} />
                           )}
@@ -36,7 +40,9 @@ export default function Cart() {
                         <Route path={`${url}/confirm`} exact>
                           <CartConfirm />
                         </Route>
-                        <Route path={`${url}/success`} exact></Route>
+                        <Route path={`${url}/success`} exact>
+                          <CartSuccess />
+                        </Route>
                       </Switch>
                     </div>
 

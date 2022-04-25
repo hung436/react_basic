@@ -22,11 +22,10 @@ export default function UserLocationForm(props) {
     numberphone: yup.number().required("Nhập đúng định dạng"),
     terms: yup.bool().required().oneOf([true], "Terms must be accepted"),
   });
-  console.log(address);
+
   useEffect(() => {
     address && setDc(address);
   }, [address]);
-  console.log("dc", dc);
 
   const handleSubmit = (values) => {
     alert(JSON.stringify(values));

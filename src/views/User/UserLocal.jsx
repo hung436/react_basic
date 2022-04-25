@@ -16,7 +16,6 @@ export default function UserLocal() {
     ward: "",
     street_name: "",
   });
-  const [info, setInfo] = useState({});
 
   const formatData = (data) => {
     if (!data) return;
@@ -36,7 +35,7 @@ export default function UserLocal() {
   const fetchUserLocation = async () => {
     try {
       const res = await getAddress();
-      console.log("res", res.address.ward);
+
       formatData(res);
       res.address && dispatch(addAddressId(res.address.id));
     } catch (error) {}
