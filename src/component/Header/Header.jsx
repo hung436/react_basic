@@ -9,10 +9,11 @@ import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../views/Auth/userSlice";
 import { toast } from "react-toastify";
+import { cartItemsCountSelector } from "../../views/Cart/selector";
 const Header = () => {
   const [show, setShow] = useState(false);
-  const [users, setUser] = useState({});
 
+  const countCart = useSelector(cartItemsCountSelector);
   const user = useSelector((state) => state.user.current);
 
   const handleClose = () => setShow(false);
@@ -50,7 +51,7 @@ const Header = () => {
             >
               <div>
                 <i className="fa-solid fa-cart-shopping"></i>
-                <span>3</span>
+                <span>{countCart}</span>
               </div>
               <p>Giỏ hàng</p>
             </Link>
