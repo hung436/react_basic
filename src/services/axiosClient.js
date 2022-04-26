@@ -76,10 +76,10 @@ axiosClient.interceptors.response.use(
           refreshToken: refresh,
         });
 
-        // localStorage.setItem(StorageKeys.TOKEN, res.data);
+        localStorage.setItem(StorageKeys.TOKEN, res.data);
 
-        // const action = await refreshToken(res.data);
-        // return axiosClient(config);
+        const action = await refreshToken(res.data);
+        return axiosClient(config);
       } catch (err) {
         return Promise.reject(err);
       }
