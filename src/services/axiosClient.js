@@ -3,7 +3,7 @@ import { StorageKeys } from "../constant/storage-key";
 import { refreshToken } from "../views/Auth/userSlice";
 import { logoutCart } from "../views/Cart/cartSlice";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+
 // eslint-disable-next-line no-unused-vars
 // import _ from "lodash";
 // import config from "./config";
@@ -69,17 +69,16 @@ axiosClient.interceptors.response.use(
     if (status === 401 && !config._retry) {
       config._retry = true;
       try {
-        const token = localStorage.getItem(StorageKeys.TOKEN);
+        const user = JSON.parse(localStorage.getItem(StorageKeys.USER));
+        const refresh = user.refreshToken;
 
-        const res = await axios.post("https://localhost:8080/api/refresh", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
+        const res = await axios.post("http://localhost:8080/api/refresh", {
+          refreshToken: refresh,
         });
-        const dispatch = useDispatch();
 
-        const action = refreshToken(res.data.access_token);
-        dispatch(action);
+        localStorage.setItem(StorageKeys.TOKEN, res.data);
+
+        const action = await refreshToken(res.data);
         return axiosClient(config);
       } catch (err) {
         return Promise.reject(err);

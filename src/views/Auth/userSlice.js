@@ -18,6 +18,7 @@ export const login = createAsyncThunk("auth/login", async (payload) => {
       id: data.userID,
       access_token: data.accessToken,
       addressId: null,
+      refreshToken: data.refreshToken,
     };
     //save data to local storage
     await localStorage.setItem(StorageKeys.TOKEN, data.accessToken);
@@ -52,6 +53,8 @@ export const userSlice = createSlice({
     },
     refreshToken: (state, action) => {
       // sendToken
+      alert(action.payload);
+      console.log("payload refrech", action.payload);
       state.current.access_token = action.payload;
       localStorage.setItem(StorageKeys.USER, JSON.stringify(action.payload));
     },
