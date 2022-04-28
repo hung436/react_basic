@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 // import config from "./config";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: process.env.REACT_APP_BACKEND_URL + "/api",
   // withCredentials: true
   headers: {
     "Content-Type": "application/json",
@@ -72,9 +72,12 @@ axiosClient.interceptors.response.use(
         const user = JSON.parse(localStorage.getItem(StorageKeys.USER));
         const refresh = user.refreshToken;
 
-        const res = await axios.post("http://localhost:8080/api/refresh", {
-          refreshToken: refresh,
-        });
+        const res = await axios.post(
+          process.env.REACT_APP_BACKEND_URL + "/api/refresh",
+          {
+            refreshToken: refresh,
+          }
+        );
 
         localStorage.setItem(StorageKeys.TOKEN, res.data);
 

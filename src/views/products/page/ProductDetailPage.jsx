@@ -129,7 +129,11 @@ function ProductDetailPage() {
                 ) : (
                   <img
                     className="img-fluid img-thumbnail"
-                    src={"http://localhost:8080/uploads/" + product.image_link}
+                    src={
+                      process.env.REACT_APP_BACKEND_URL +
+                      "/uploads/" +
+                      product.image_link
+                    }
                     alt=""
                   />
                 )}

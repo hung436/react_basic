@@ -40,7 +40,8 @@ export default function ModalOrder(props) {
                       <img
                         className="img-thumbnail"
                         src={
-                          "http://localhost:8080/uploads/" +
+                          process.env.REACT_APP_BACKEND_URL +
+                          "/uploads/" +
                           item.product.image_link
                         }
                         alt=""

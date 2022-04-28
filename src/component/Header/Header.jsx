@@ -7,34 +7,39 @@ import HeaderLogo from "../../assets/images/header-logo.svg";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../views/Auth/userSlice";
+import { logout, openModal, closeModal } from "../../views/Auth/userSlice";
 import { toast } from "react-toastify";
 import { cartItemsCountSelector } from "../../views/Cart/selector";
 const Header = () => {
-  const [show, setShow] = useState(false);
-
   const countCart = useSelector(cartItemsCountSelector);
   const user = useSelector((state) => state.user.current);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const modal = useSelector((state) => state.user.modalIsOpen);
+  const handleClose = () => {
+    const action = closeModal();
+    dispatch(action);
+  };
+  const handleShow = () => {
+    const action = openModal();
+    dispatch(action);
+  };
   const dispatch = useDispatch();
   const logoutuser = () => {
     dispatch(logout());
   };
   return (
     <>
-      <header>
+      <header className="sticky-top">
         <div className="container-fluid">
           <div className="row">
-            <Link
-              to="/"
-              id="h_logo"
-              className="col-12 col-lg-3 col-md-3 col-sm-12  "
+            <div id="h_logo" className="col-12 col-lg-3 col-md-3 col-sm-12">
+              <Link to="/">
+                <img src={HeaderLogo} alt="logo" className="img-responsive" />
+              </Link>
+            </div>
+            <div
+              id="h_search"
+              className="mt-2 col-12 col-lg-5 col-md-5 col-sm-12 "
             >
-              <img src={HeaderLogo} alt="logo" className="img-responsive" />
-            </Link>
-            <div id="h_search" className="col-12 col-lg-5 col-md-5 col-sm-12">
               <input
                 type="search"
                 placeholder="Nhập tên sản phẩm"
@@ -44,17 +49,20 @@ const Header = () => {
                 <i className="fa-solid fa-magnifying-glass"></i>
               </div>
             </div>
-            <Link
-              to="/cart"
+            <div
+              className="col-12 col-lg-2 col-md-2 col-sm-12 d-none d-md-flex mt-2"
               id="h_cart"
-              className="col-12 col-lg-2 col-md-2 col-sm-12 "
             >
-              <div>
-                <i className="fa-solid fa-cart-shopping"></i>
-                <span>{countCart}</span>
-              </div>
-              <p>Giỏ hàng</p>
-            </Link>
+              <Link to="/cart">
+                <div>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <span>{countCart}</span>
+                </div>
+
+                <p>Giỏ hàng</p>
+              </Link>
+            </div>
+
             {user ? (
               <NavDropdown
                 title={
@@ -62,7 +70,7 @@ const Header = () => {
                     <i className="fa-solid fa-circle-user fs-3 text-light"></i>
                   </>
                 }
-                className="col-12 col-lg-2 col-md-2 col-sm-12"
+                className="col-12 col-lg-2 col-md-2 col-sm-12 d-none d-md-block"
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item className="text-dark bg-warning" disabled>
@@ -96,18 +104,20 @@ const Header = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <Link
-                className="col-12 col-lg-2 col-md-2 col-sm-12"
+              <div
+                className="col-12 col-lg-2 col-md-2 col-sm-12 d-none d-md-block"
                 onClick={handleShow}
               >
                 {/* <i className="fa-solid fa-circle-user "></i> */}
-                <i className="fa-solid fa-arrow-right-to-bracket fs-3 text-light"></i>
-              </Link>
+                <Link>
+                  <i className="fa-solid fa-arrow-right-to-bracket fs-3 text-light"></i>
+                </Link>
+              </div>
             )}
           </div>
         </div>
       </header>
-      <ModalLogin show={show} modalClose={handleClose} />
+      <ModalLogin show={modal} modalClose={handleClose} />
       <Navigate />
     </>
   );

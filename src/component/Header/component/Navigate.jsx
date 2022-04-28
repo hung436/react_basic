@@ -18,20 +18,31 @@ export default function Navigate() {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto ">
-              <Nav.Link as={Link} to="/">
-                Trang chủ
-              </Nav.Link>
-              <Nav.Link as={Link} to="/product">
-                Sản phẩm
-              </Nav.Link>
-              <Nav.Link as={Link} to="/cart">
-                Giỏ hàng
-              </Nav.Link>
-              <Nav.Link as={Link} to="/about">
-                Về chúng tôi
-              </Nav.Link>
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-center "
+          >
+            <Nav variant="pills" defaultActiveKey="/home">
+              <Nav.Item>
+                <Nav.Link as={Link} eventKey="/home" to="/">
+                  Home
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"/product"} eventKey="/product">
+                  Sản phẩm
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"/cart"} eventKey="/cart">
+                  Giỏ hàng
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"about"} eventKey="about">
+                  Về chúng tôi
+                </Nav.Link>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -45,10 +45,11 @@ export default function Cart() {
                         </Route>
                       </Switch>
                     </div>
-
-                    <div className="col-lg-4 bg-grey">
-                      <CartTotal />
-                    </div>
+                    {countCart <= 0 || countCart === undefined || (
+                      <div className="col-lg-4 bg-grey">
+                        <CartTotal />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

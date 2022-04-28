@@ -5,6 +5,7 @@ header {
   align-items: center;
   box-sizing: border-box;
   padding:20px;
+ 
   .row {
  
     #h_search {
@@ -18,11 +19,15 @@ header {
       }
     }
     #h_cart {
-      text-decoration: none;
-      color: #fff !important;
-      text-align: end;
-      display: flex;
-      div {
+ 
+    
+      a{
+        width: 40%;
+        color: #fff !important;
+        text-decoration: none;
+      
+        text-align: end;
+        display: flex;
         i {
           font-size: 25px;
         }
@@ -36,10 +41,13 @@ header {
           border: 1px solid #fff;
           color: #fff;
           text-align: center;
+          align-items: center;
           font: 15px Arial, sans-serif;
           transform: translateY(5px);
-        }
+        
       }
+    }
+     
     }
     #h_login {
       font-size: 25px;

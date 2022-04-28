@@ -142,7 +142,11 @@ export default function Product(props) {
                   <td>
                     <img
                       style={{ width: "50px" }}
-                      src={"http://localhost:8080/uploads/" + p.image_link}
+                      src={
+                        process.env.REACT_APP_BACKEND_URL +
+                        "/uploads/" +
+                        p.image_link
+                      }
                       alt=""
                     />
                   </td>

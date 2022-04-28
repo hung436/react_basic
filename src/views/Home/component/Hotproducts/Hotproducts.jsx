@@ -76,7 +76,11 @@ function Hotproduct() {
                 >
                   <img
                     className="img-thumbnail"
-                    src={"http://localhost:8080/uploads/" + item.image_link}
+                    src={
+                      process.env.REACT_APP_BACKEND_URL +
+                      "/uploads/" +
+                      item.image_link
+                    }
                     alt=""
                   />
                 </Link>

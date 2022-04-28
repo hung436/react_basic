@@ -23,7 +23,8 @@ export default function ModalProductUD(props) {
   useEffect(() => {
     const handle = () => {
       setImgProduct({
-        preview: "http://localhost:8080/uploads/" + id.image_link,
+        preview:
+          process.env.REACT_APP_BACKEND_URL + "/uploads/" + id.image_link,
       });
       setEditorState(props.editor);
     };

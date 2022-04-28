@@ -45,7 +45,11 @@ function CartItem({ item, onChange, hideLoading, showLoading }) {
         <div className="col-md-2 col-lg-2 col-xl-2">
           <Link to={`/product/${item.idProduct}`}>
             <img
-              src={"http://localhost:8080/uploads/" + product.image_link}
+              src={
+                process.env.REACT_APP_BACKEND_URL +
+                "/uploads/" +
+                product.image_link
+              }
               className="img-fluid rounded-3"
               alt="Cotton T-shirt"
             />
