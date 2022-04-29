@@ -79,7 +79,7 @@ axiosClient.interceptors.response.use(
           }
         );
 
-        localStorage.setItem(StorageKeys.TOKEN, res.data);
+        await localStorage.setItem(StorageKeys.TOKEN, res.data);
 
         return axiosClient(config);
       } catch (err) {
