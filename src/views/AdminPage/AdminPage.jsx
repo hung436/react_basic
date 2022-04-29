@@ -4,6 +4,7 @@ import { Switch, Route, useRouteMatch } from "react-router-dom";
 import Dashboard from "./component/Dashboard";
 import Category from "./Category/Category";
 import Product from "./Product/Product";
+import Order from "./Order/Order";
 import User from "./User/User";
 import { useSelector } from "react-redux";
 import LoginAdmin from "./component/LoginAdmin";
@@ -21,7 +22,7 @@ export default function AdminPage() {
       <HeaderAD reload={handleReload} />
 
       <Switch>
-        <div className="container-fluid">
+        <div className="container-fluid bg-light">
           <Route path={`${path}`} exact component={Dashboard} />
           <Route path={`${path}/dashboard`} component={Dashboard} />
           <Route
@@ -33,6 +34,7 @@ export default function AdminPage() {
             component={() => <User refresh={refesh} />}
           />
           <Route path={`${path}/category`} component={Category} />
+          <Route path={`${path}/order`} component={Order} />
         </div>
       </Switch>
     </>

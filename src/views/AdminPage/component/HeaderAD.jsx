@@ -55,11 +55,22 @@ export default function HeaderAD(props) {
                 Sản phẩm
               </Nav.Link>
               <Nav.Link
-                as={Link}
                 active={Active === 3}
-                to="/admin/user"
+                as={Link}
+                to="/admin/order"
                 onClick={() => {
                   setActive(3);
+                  props.reload();
+                }}
+              >
+                Đơn hàng
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                active={Active === 4}
+                to="/admin/user"
+                onClick={() => {
+                  setActive(4);
                   props.reload();
                 }}
               >

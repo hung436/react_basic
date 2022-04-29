@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
+import { Link } from "react-router-dom";
 import { getProduct } from "../../../../services/productService";
 export default function Products() {
   const [list, setList] = useState([]);
@@ -25,7 +26,7 @@ export default function Products() {
     <>
       <div className="p-2 bg-light">
         <div className="d-flex justify-content-end">
-          <span>{"Xem tất cả -->"}</span>
+          <Link>{"Xem tất cả -->"}</Link>
         </div>
         <hr />
         <div className="row ">

@@ -5,17 +5,17 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteItemCart } from "../cartSlice";
 
-function CartItem({ item, onChange, hideLoading, showLoading }) {
+function CartItem({ item, onChange }) {
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
-  const isPromo = product?.discount !== "No";
+  const isPromo = product?.discount !== 0;
   const price = parseInt(product?.price);
   let discountPercent;
   let priceAfterDiscount;
-  if (isPromo) {
-    // discountPercent = parseInt(product?.discount?.slice(0, -1)) / 100;
-    priceAfterDiscount = parseInt(price) - parseInt(price) * discountPercent;
-  }
+  // if (isPromo) {
+  //   // discountPercent = parseInt(product?.discount?.slice(0, -1)) / 100;
+  //   priceAfterDiscount = parseInt(price) - parseInt(price) * discountPercent;
+  // }
   const handleButtonDeleteClick = () => {
     const action = deleteItemCart(product.id);
     dispatch(action);
@@ -64,11 +64,18 @@ function CartItem({ item, onChange, hideLoading, showLoading }) {
         </div>
         <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
           <h6 className="mb-0">
-            {(price * item.quantity).toLocaleString("it-IT", {
-              style: "currency",
-              currency: "VND",
-            })}
-            &nbsp;
+            {isPromo
+              ? (item.priceAfterDiscount * item.quantity).toLocaleString(
+                  "it-IT",
+                  {
+                    style: "currency",
+                    currency: "VND",
+                  }
+                )
+              : (item.price * item.quantity).toLocaleString("it-IT", {
+                  style: "currency",
+                  currency: "VND",
+                })}
           </h6>
         </div>
         <div

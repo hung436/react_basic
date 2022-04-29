@@ -10,6 +10,11 @@ export default function ProductItem(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.current);
   const { path } = useRouteMatch();
+  let isPromo = item?.discount !== 0;
+  let priceAfterDiscount;
+  if (isPromo) {
+    priceAfterDiscount = item.price - (item.price * item.discount) / 100;
+  }
   const handleAddToCartClick = () => {
     if (user) {
       //add to cart by user id
@@ -20,6 +25,7 @@ export default function ProductItem(props) {
         priceAfterDiscount: item.discount,
         name: item.name,
       });
+
       // if (isPromo && priceAfterDiscount) {
       //   action = addToCart({
       //     idProduct: product.id,
@@ -52,7 +58,11 @@ export default function ProductItem(props) {
               alt=""
             />
           </Link>
-          <span className="product-discount-label">-23%</span>
+          {item.discount !== 0 ? (
+            <span className="product-discount-label">{-item.discount}%</span>
+          ) : (
+            ""
+          )}
           <ul className="product-links">
             <li>
               <Link>
@@ -81,7 +91,25 @@ export default function ProductItem(props) {
             <div>{item.name}</div>
           </h3>
           <div className="price">
-            {item.price} <span>{}</span>
+            {isPromo ? (
+              <>
+                {priceAfterDiscount.toLocaleString("it-IT", {
+                  style: "currency",
+                  currency: "VND",
+                })}{" "}
+                <span>
+                  {item.price.toLocaleString("it-IT", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </span>
+              </>
+            ) : (
+              item.price.toLocaleString("it-IT", {
+                style: "currency",
+                currency: "VND",
+              })
+            )}
           </div>
         </div>
       </div>

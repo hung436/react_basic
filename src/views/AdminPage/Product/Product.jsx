@@ -129,7 +129,6 @@ export default function Product(props) {
               <th>Giá</th>
               <th>Discount</th>
               <th>Nổi bật</th>
-              <th>Mô tả</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -155,7 +154,6 @@ export default function Product(props) {
                   <td>{p.discount}</td>
                   <td>{p.highlight === 0 ? "Không" : "Có"}</td>
 
-                  <td>{convert(p.descrition)}</td>
                   <td>
                     <ButtonGroup>
                       <button

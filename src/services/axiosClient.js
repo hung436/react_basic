@@ -1,8 +1,5 @@
 import axios from "axios";
 import { StorageKeys } from "../constant/storage-key";
-import { refreshToken } from "../views/Auth/userSlice";
-import { logoutCart } from "../views/Cart/cartSlice";
-import { toast } from "react-toastify";
 
 // eslint-disable-next-line no-unused-vars
 // import _ from "lodash";
@@ -18,7 +15,15 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const URLS = ["/getaddress", "/order", "/getorder", "/getorderdetail"];
+    const URLS = [
+      "/getaddress",
+      "/order",
+      "/getorder",
+      "/getorderdetail",
+      "/addfavorite",
+      "/getfavoriteproduct",
+      "/detelefavoriteproduct",
+    ];
 
     const dynamicURL = ["/user/favorites/"];
     const dynamicURLNeedToken = dynamicURL.some((item) => {
@@ -58,6 +63,7 @@ axiosClient.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
+    // eslint-disable-next-line no-unused-vars
     const { data } = response;
     return response.data;
   },

@@ -7,6 +7,9 @@ const createProduct = (data) => {
 const getProduct = (page) => {
   return axios.get(`/getproduct?page=${page}`);
 };
+const getProductFill = (id, action) => {
+  return axios.get("/getproductfill", { params: { action: action, id: id } });
+};
 const updateProduct = (data) => {
   return axios.put("/editproduct", data, {
     headers: { "Content-Type": "multipart/form-data" },
@@ -24,4 +27,5 @@ export {
   deleteProduct,
   updateProduct,
   getProductByID,
+  getProductFill,
 };

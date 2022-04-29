@@ -36,19 +36,19 @@ function ProductDetailPage() {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     (async function () {
-  //       try {
-  //         const rs = await getIsFavoriteProduct(id);
-  //         if (rs === "nope") setIsFavorite(false);
-  //         if (rs === "yes") setIsFavorite(true);
-  //       } catch (error) {}
-  //     })();
-  //   } else {
-  //   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      (async function () {
+        try {
+          const rs = await getIsFavoriteProduct(id);
+          if (rs.errorCode === 1) setIsFavorite(false);
+          if (rs.errorCode === 0) setIsFavorite(true);
+        } catch (error) {}
+      })();
+    } else {
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const handleQuantityChange = (newValue) => {
     setQuantity(newValue);
@@ -82,40 +82,39 @@ function ProductDetailPage() {
     dispatch(action);
   };
 
-  const isPromo = product?.discount !== "No";
+  const isPromo = product?.discount !== 0;
   const price = parseInt(product?.price);
   let discountPercent;
   let priceAfterDiscount;
-  // if (isPromo) {
-  //   discountPercent = parseInt(product.discount.slice(0, -1)) / 100;
-  //   priceAfterDiscount = parseInt(price) - parseInt(price) * discountPercent;
-  // }
+  if (isPromo) {
+    discountPercent = product.discount / 100;
+    priceAfterDiscount = parseInt(price) - parseInt(price) * discountPercent;
+  }
 
-  // const handleFavoriteClick = () => {
-  //   (async function () {
-  //     try {
-  //       const res = await addFavorites({
-  //         product_id: product.id,
-  //       });
-  //       if (res.status === 200 && res.success === true) {
-  //         setIsFavorite(true);
-  //         toast.success("Đã yêu thích sản phẩm");
-  //       }
-  //     } catch (error) {}
-  //   })();
-  // };
+  const handleFavoriteClick = () => {
+    (async function () {
+      try {
+        const res = await addFavorites({ id: product.id });
+        console.log(res);
+        if (res.errorCode === 0) {
+          setIsFavorite(true);
+          toast.success("Đã yêu thích sản phẩm");
+        }
+      } catch (error) {}
+    })();
+  };
 
-  // const handleDeleteFavorite = () => {
-  //   (async function () {
-  //     try {
-  //       const res = await deteleFavoriteProduct(product.id);
-  //       if (res.status === 200 && res.success === true) {
-  //         setIsFavorite(false);
-  //         toast.success("Đã xóa yêu thích sản phẩm");
-  //       }
-  //     } catch (error) {}
-  //   })();
-  // };
+  const handleDeleteFavorite = () => {
+    (async function () {
+      try {
+        const res = await deteleFavoriteProduct(product.id);
+        if (res.errorCode === 0) {
+          setIsFavorite(false);
+          toast.success("Đã xóa yêu thích sản phẩm");
+        }
+      } catch (error) {}
+    })();
+  };
 
   return (
     <div className="product-detail-page">
@@ -254,16 +253,16 @@ function ProductDetailPage() {
                   </div>
                   {isFavorite ? (
                     <div
-                      // onClick={handleDeleteFavorite}
+                      onClick={handleDeleteFavorite}
                       style={{ marginLeft: "10px" }}
-                      className="buy__btn heart"
+                      className="buy__btn heart col-lg-3 col-md-3 col-sm-6"
                     >
                       <i className="fas fa-heart-broken"></i>
                       <span>Xóa Yêu Thích</span>
                     </div>
                   ) : (
                     <div
-                      // onClick={handleFavoriteClick}
+                      onClick={handleFavoriteClick}
                       style={{ marginLeft: "10px" }}
                       className="buy__btn heart col-lg-3 col-md-3 col-sm-6"
                     >

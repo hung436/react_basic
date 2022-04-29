@@ -12,9 +12,15 @@ const getOrderDetail = (id) => {
   return axios.get("/getorderdetail", { params: { id: id } });
 };
 const registeruser = () => {};
-const getIsFavoriteProduct = (id) => {};
-const addFavorites = () => {};
-const deteleFavoriteProduct = () => {};
+const getIsFavoriteProduct = (id) => {
+  return axios.get("/getfavoriteproduct", { params: { id: id } });
+};
+const addFavorites = (id) => {
+  return axios.post("/addfavorite", id);
+};
+const deteleFavoriteProduct = (id) => {
+  return axios.delete("/detelefavoriteproduct", { data: { id: id } });
+};
 const changeAddress = (data) => {};
 const getAddress = () => {
   return axios.get("/getaddress");

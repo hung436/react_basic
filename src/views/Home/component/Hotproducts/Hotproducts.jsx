@@ -16,11 +16,38 @@ function Hotproduct() {
   });
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     // autoplay: true,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
@@ -48,49 +75,49 @@ function Hotproduct() {
 
   return (
     <section className="hot-promotion">
-      <div className="container">
-        <div className="hot-promotion__content">
-          <div className="hot-promotion__top">
-            <div className="hot-promotion__title">
-              <img src={iconHotPromotion} alt="" />
-              <span>Khuyễn Mãi Hot</span>
-            </div>
-            <Link to="/product?sort-by-sale=true" className="see-all">
-              Xem tất cả &nbsp; &gt;
-            </Link>
+      {/* <div className="container"> */}
+      <div className="hot-promotion__content">
+        <div className="hot-promotion__top">
+          <div className="hot-promotion__title">
+            <img src={iconHotPromotion} alt="" />
+            <span>Khuyễn Mãi Hot</span>
           </div>
-          {/* {loading ? (
+          <Link to="/product?sort-by-sale=true" className="see-all">
+            Xem tất cả &nbsp; &gt;
+          </Link>
+        </div>
+        {/* {loading ? (
             <Skeleton
               className="skeleton"
               containerClassName="slide-skeleton"
               count={3}
             /> */}
-          {/* ) : ( */}
-          <Slider {...settings} className="hot-promotion__list  text-center">
-            {hotPromoList.map((item) => (
-              <>
-                <Link
-                  key={item.id}
-                  className="hot-promotion__item"
-                  to={`/product/${item.id}`}
-                >
-                  <img
-                    className="img-thumbnail"
-                    src={
-                      process.env.REACT_APP_BACKEND_URL +
-                      "/uploads/" +
-                      item.image_link
-                    }
-                    alt=""
-                  />
-                </Link>
-                <div className="">{item.name}</div>
-              </>
-            ))}
-          </Slider>
-          {/* )} */}
-        </div>
+        {/* ) : ( */}
+        <Slider {...settings} className="hot-promotion__list  text-center">
+          {hotPromoList.map((item) => (
+            <>
+              <Link
+                key={item.id}
+                className="hot-promotion__item"
+                to={`/product/${item.id}`}
+              >
+                <img
+                  className="img-fluid"
+                  src={
+                    process.env.REACT_APP_BACKEND_URL +
+                    "/uploads/" +
+                    item.image_link
+                  }
+                  alt=""
+                />
+              </Link>
+              <div className="">{item.name}</div>
+            </>
+          ))}
+        </Slider>
+        {/* )} */}
       </div>
+      {/* </div> */}
     </section>
   );
 }

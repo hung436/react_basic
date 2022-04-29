@@ -5,11 +5,38 @@
     .slick-next:before {
       display: none;
     }
+    .slick-next,
+    .slick-prev{
+      display: none !important;}
   }
+  .slick-next,
+  .slick-prev{
+    z-index: 1;
+    background-color: rgba(0,0,0,0.1);
+    width: 40px;
+    height: 60px;
+    border: 1px solid ;
+    &:hover{
+      background-color:rgba(0,0,0,0.5)
+    }
+   
+  }
+  
   .slick-prev:before,
   .slick-next:before {
+    font-family: FontAwesome;
     font-size: 25px;
-    color: #0099a8;
+    color: rgb(0, 72, 255);
+
+    
+  }
+  .slick-prev:before{
+    content: "\f104";
+
+  }
+  .slick-next::before {
+    
+    content: "\f105";
   }
   .slider__item {
     outline: none;
