@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./withLoanding.scss";
 function withLoading(WrappedComponent) {
   return (props) => {
     const showLoading = (className) => {

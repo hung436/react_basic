@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navigate from "./component/Navigate";
 import ModalLogin from "../../views/Auth/ModalLogin";
 import "./Header.scss";
-import { NavDropdown } from "react-bootstrap";
+import { NavDropdown, Navbar, Container, Nav } from "react-bootstrap";
 import HeaderLogo from "../../assets/images/header-logo.svg";
 import { Link } from "react-router-dom";
 import "./Header.scss";
@@ -50,19 +50,18 @@ const Header = () => {
               </div>
             </div>
             <div
-              className="col-12 col-lg-2 col-md-2 col-sm-12 d-none d-md-flex mt-2"
+              className="col-12 col-lg-2 col-md-2 col-sm-12 d-none d-md-flex mt-2 justify-content-end"
               id="h_cart"
             >
               <Link to="/cart">
                 <div>
-                  <i className="fa-solid fa-cart-shopping"></i>
+                  <i className="fa-solid fa-cart-shopping "></i>
                   <span>{countCart}</span>
                 </div>
 
                 <p>Giỏ hàng</p>
               </Link>
             </div>
-
             {user ? (
               <NavDropdown
                 title={
@@ -118,7 +117,96 @@ const Header = () => {
         </div>
       </header>
       <ModalLogin show={modal} modalClose={handleClose} />
-      <Navigate />
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <div className="d-flex  d-md-none">
+            <div className="" id="h_cart">
+              <Link to="/cart">
+                <div>
+                  <i className="fa-solid fa-cart-shopping "></i>
+                  <span>{countCart}</span>
+                </div>
+              </Link>
+            </div>
+            {user ? (
+              <NavDropdown
+                title={
+                  <>
+                    <i className="fa-solid fa-circle-user fs-3 text-light"></i>
+                  </>
+                }
+                className=""
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item className="text-dark bg-warning" disabled>
+                  Xin chào
+                  <span className="text-primary">
+                    {" "}
+                    {" '" + user.name + "'"}
+                  </span>
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  className="text-success"
+                  to="/user/order"
+                >
+                  Đơn hàng của bạn
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/user">
+                  Thông tin cá nhân
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/user/local">
+                  Địa chỉ giao hàng
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => toast.warning("Tính năng đang phất triển")}
+                >
+                  Language
+                </NavDropdown.Item>
+                {/* <NavDropdown.Divider /> */}
+                <NavDropdown.Item onClick={logoutuser}>
+                  Đăng xuất
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <div className="" onClick={handleShow}>
+                {/* <i className="fa-solid fa-circle-user "></i> */}
+                <Link>
+                  <i className="fa-solid fa-arrow-right-to-bracket fs-3 text-light"></i>
+                </Link>
+              </div>
+            )}
+          </div>
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-center "
+          >
+            <Nav variant="pills" defaultActiveKey="/home">
+              <Nav.Item>
+                <Nav.Link as={Link} eventKey="/home" to="/">
+                  Home
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"/product"} eventKey="/product">
+                  Sản phẩm
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"/cart"} eventKey="/cart">
+                  Giỏ hàng
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to={"about"} eventKey="about">
+                  Về chúng tôi
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   );
 };

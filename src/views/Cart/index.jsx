@@ -26,7 +26,7 @@ export default function Cart() {
               >
                 <div className="card-body p-0">
                   <div className="row g-0">
-                    <div className="col-lg-8">
+                    <div className="col-lg-12">
                       <Switch>
                         <Route path={`${url}`} exact>
                           {!isLoggedIn ? (

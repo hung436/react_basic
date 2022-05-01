@@ -16,12 +16,11 @@ export default function Order() {
       ...params,
     };
   }, [location.search]);
-  const fetchapi = useCallback();
+
   useEffect(() => {
     (async function () {
       try {
         const res = await getOrders();
-        console.log(res);
         setorderItem(res.data);
         // rs.data && formatData(rs.data);
         // setPagination(rs.pagination);

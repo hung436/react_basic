@@ -1,15 +1,15 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../Cart/cartSlice";
 import { openModal } from "../../../Auth/userSlice";
 import "./ProductItem.scss";
 import { toast } from "react-toastify";
 export default function ProductItem(props) {
-  const { item, index } = props;
+  const { item } = props;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.current);
-  const { path } = useRouteMatch();
+
   let isPromo = item?.discount !== 0;
   let priceAfterDiscount;
   if (isPromo) {
@@ -44,10 +44,13 @@ export default function ProductItem(props) {
     dispatch(action);
   };
   return (
-    <div className="col-md-3 col-sm-6 mb-3">
+    <div className="col-md-3 col-6 mb-3">
       <div className="product-grid">
         <div className="product-image">
-          <Link to={`/product/${item.id}`} className="image">
+          <Link
+            to={`/product/${item.id}`}
+            className="bg-image hover-zoom ripple shadow-1-strong rounded"
+          >
             <img
               className="img-thumbnail"
               src={
@@ -65,24 +68,24 @@ export default function ProductItem(props) {
           )}
           <ul className="product-links">
             <li>
-              <Link>
+              <div>
                 <i className="fa fa-search" />
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="#">
+              <div>
                 <i className="fa fa-heart" />
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="#">
+              {/* <Link >
                 <i className="fa fa-random" />
-              </Link>
+              </Link> */}
             </li>
             <li>
-              <Link href="#" onClick={handleAddToCartClick}>
+              <div onClick={handleAddToCartClick}>
                 <i className="fa-solid fa-cart-plus"></i>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>

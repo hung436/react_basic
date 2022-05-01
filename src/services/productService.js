@@ -21,6 +21,9 @@ const deleteProduct = (id) => {
 const getProductByID = (id) => {
   return axios.get(`/getproductbyid?id=${id}`);
 };
+const getAllOrder = (page) => {
+  return axios.get("/getallorder", { params: { page: page } });
+};
 export {
   createProduct,
   getProduct,
@@ -28,4 +31,5 @@ export {
   updateProduct,
   getProductByID,
   getProductFill,
+  getAllOrder,
 };

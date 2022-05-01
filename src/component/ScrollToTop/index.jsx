@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-import iconMoveTop from './../../assets/images/button-move-top.png';
+import iconMoveTop from "./../../assets/images/iconstotop.png";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,7 +18,7 @@ export default function ScrollToTop() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -27,31 +27,31 @@ export default function ScrollToTop() {
   }, [pathname]);
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
     return () => {
-      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener("scroll", toggleVisibility);
     };
   }, []);
 
   return (
     <div
       style={{
-        position: 'fixed',
-        right: '50px',
-        bottom: '50px',
-        cursor: 'pointer',
+        position: "fixed",
+        right: "50px",
+        bottom: "50px",
+        cursor: "pointer",
         zIndex: 99,
       }}
-      className='scroll-to-top'
+      className="scroll-to-top"
     >
       {isVisible && (
         <div onClick={scrollToTop}>
           <img
             style={{
-              width: '50px',
+              width: "30px",
             }}
             src={iconMoveTop}
-            alt='Go to top'
+            alt="Go to top"
           />
         </div>
       )}

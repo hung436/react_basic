@@ -7,13 +7,14 @@ import Skeleton from "react-loading-skeleton";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../Auth/userSlice";
 import { addToCart } from "../../Cart/cartSlice";
+import withLoading from "../../../component/HOC/withLoading";
 import {
   getIsFavoriteProduct,
   addFavorites,
   deteleFavoriteProduct,
 } from "../../../services/userService";
 import "./product-detail-page.scss";
-function ProductDetailPage() {
+function ProductDetailPage({ hideLoading, showLoading }) {
   const {
     params: { id },
   } = useRouteMatch();
@@ -34,7 +35,7 @@ function ProductDetailPage() {
       } catch (error) {}
       setLoading(false);
     })();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (user) {
@@ -55,6 +56,7 @@ function ProductDetailPage() {
   };
 
   const handleAddToCartClick = () => {
+    showLoading();
     if (user) {
       //add to cart by user id
       let action = addToCart({
@@ -75,11 +77,13 @@ function ProductDetailPage() {
       }
       dispatch(action);
       toast.success("Thêm vào giỏ hàng thành công!");
+      hideLoading();
       return;
     }
     toast.warn("Đăng nhập để thêm vào giỏ hàng!");
     const action = openModal();
     dispatch(action);
+    hideLoading();
   };
 
   const isPromo = product?.discount !== 0;
@@ -93,14 +97,15 @@ function ProductDetailPage() {
 
   const handleFavoriteClick = () => {
     (async function () {
+      showLoading();
       try {
         const res = await addFavorites({ id: product.id });
-        console.log(res);
         if (res.errorCode === 0) {
           setIsFavorite(true);
           toast.success("Đã yêu thích sản phẩm");
         }
       } catch (error) {}
+      hideLoading();
     })();
   };
 
@@ -117,8 +122,8 @@ function ProductDetailPage() {
   };
 
   return (
-    <div className="product-detail-page">
-      <div className="container">
+    <div className="container">
+      <div className="product-detail-page">
         <div className="product-detail-page__content">
           <div className="row">
             <div className="col-12 col-lg-5 col-md-5 col-sm-12">
@@ -127,7 +132,7 @@ function ProductDetailPage() {
                   <Skeleton />
                 ) : (
                   <img
-                    className="img-fluid img-thumbnail"
+                    className="img-fluid"
                     src={
                       process.env.REACT_APP_BACKEND_URL +
                       "/uploads/" +
@@ -288,4 +293,4 @@ function ProductDetailPage() {
   );
 }
 
-export default ProductDetailPage;
+export default withLoading(ProductDetailPage);

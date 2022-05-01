@@ -7,7 +7,7 @@ export default function FillProduct(props) {
   return (
     <div className="d-flex bg-light p-4">
       <div className="d-flex align-center mt-2">Sắp xếp :</div>
-      <ButtonGroup aria-label="Basic example" c>
+      <ButtonGroup aria-label="Basic example">
         <Button
           variant="light"
           className="border-primary"

@@ -26,12 +26,12 @@ export default function Products() {
     <>
       <div className="p-2 bg-light">
         <div className="d-flex justify-content-end">
-          <Link>{"Xem tất cả -->"}</Link>
+          <Link to="/product">{"Xem tất cả -->"}</Link>
         </div>
         <hr />
         <div className="row ">
           {list.map((item, index) => {
-            return <ProductItem item={item} index={index} />;
+            return <ProductItem item={item} key={index} />;
           })}
         </div>
       </div>

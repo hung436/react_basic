@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { getOrderDetail } from "../../services/userService";
+// import { getOrderDetail } from "../../services/userService";
 import { Link } from "react-router-dom";
 export default function ModalOrder(props) {
   const { show, onHide, data } = props;
@@ -24,12 +24,10 @@ export default function ModalOrder(props) {
             <div className="col-md-2 col-lg-2 col-xl-2">Hình ảnh</div>
             <div className="col-md-3 col-lg-3 col-xl-2 ">Số lượng</div>
             <div className="col-md-2 col-lg-2 col-xl-2 ">Giá tiền</div>
-            {/* <div className="col-md-3 col-lg-3 col-xl-2 ">Trạng Thái</div>
-            <div className="col-md-3 col-lg-3 col-xl-2 ">Chi tiết</div> */}
           </div>
           {data.map((item, index) => {
             return (
-              <>
+              <div div key={index}>
                 <hr />
                 <div className="row mb-4 d-flex justify-content-between align-items-center">
                   <div className="col-md-1 col-lg-1 col-xl-1">
@@ -55,7 +53,7 @@ export default function ModalOrder(props) {
                     {item.price}
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </Modal.Body>

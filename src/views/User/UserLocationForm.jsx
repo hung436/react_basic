@@ -13,7 +13,16 @@ import {
 import { Formik } from "formik";
 export default function UserLocationForm(props) {
   const { onSubmit, address } = props;
-  const [dc, setDc] = useState({});
+  const [addressItem, setAddressItem] = useState({
+    firstname: " ",
+    lastname: " ",
+    ward: " ",
+    street_name: " ",
+    district: " ",
+    city: " ",
+    email: " ",
+    numberphone: " ",
+  });
   const schema = yup.object().shape({
     city: yup.string().required("Vui lòng điền vào đây"),
     ward: yup.string().required("Vui lòng điền vào đây"),
@@ -22,7 +31,7 @@ export default function UserLocationForm(props) {
   });
 
   useEffect(() => {
-    address && setDc(address);
+    address && setAddressItem(address);
   }, [address]);
 
   const handleSubmit = (values) => {
@@ -31,7 +40,7 @@ export default function UserLocationForm(props) {
     onSubmit(values);
   };
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip id="button-tooltip" name="toolip" {...props}>
       Vui lòng vào Thông tin tài khoản để sửa
     </Tooltip>
   );
@@ -42,14 +51,14 @@ export default function UserLocationForm(props) {
         validationSchema={schema}
         onSubmit={(values) => handleSubmit(values)}
         initialValues={{
-          firstname: dc.firstname,
-          lastname: dc.lastname,
-          ward: dc.ward,
-          street_name: dc.street_name,
-          district: dc.district,
-          city: dc.city,
-          email: dc.email,
-          numberphone: dc.numberphone,
+          firstname: addressItem.firstname,
+          lastname: addressItem.lastname,
+          ward: addressItem.ward,
+          street_name: addressItem.street_name,
+          district: addressItem.district,
+          city: addressItem.city,
+          email: addressItem.email,
+          numberphone: addressItem.numberphone,
         }}
       >
         {({

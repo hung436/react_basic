@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { getProduct } from "../../../../services/productService";
+import { getProductFill } from "../../../../services/productService";
 import iconHotPromotion from "../../../../assets/images/icon-hot-promotion.svg";
 import Skeleton from "react-loading-skeleton";
 import { useInView } from "react-intersection-observer";
@@ -51,21 +51,19 @@ function Hotproduct() {
   };
 
   useEffect(() => {
-    // fetch('https://phanolink.herokuapp.com/api/products?feature')
     //     .then((res) => res.json())
     //     .then((res) => {setHotPromoList(res.data.slice(0, 9))});
     mouted.current = true;
-    // if (!isLoaded.current && inView) {
-    //   (async () => {
-    //     setLoading(true);
-    const fetchapi = async () => {
-      const res = await getProduct(0);
 
-      let list = res.data.rows;
+    setLoading(true);
+    const fetchapi = async () => {
+      const res = await getProductFill("ALL", "free");
+
+      let list = res;
       if (mouted.current) setHotPromoList(list);
     };
     fetchapi();
-    // setLoading(false);
+    setLoading(false);
     //   })();
     //   isLoaded.current = true;
     return () => {
@@ -86,36 +84,38 @@ function Hotproduct() {
             Xem tất cả &nbsp; &gt;
           </Link>
         </div>
-        {/* {loading ? (
-            <Skeleton
-              className="skeleton"
-              containerClassName="slide-skeleton"
-              count={3}
-            /> */}
-        {/* ) : ( */}
-        <Slider {...settings} className="hot-promotion__list  text-center">
-          {hotPromoList.map((item) => (
-            <>
-              <Link
-                key={item.id}
-                className="hot-promotion__item"
-                to={`/product/${item.id}`}
-              >
-                <img
-                  className="img-fluid"
-                  src={
-                    process.env.REACT_APP_BACKEND_URL +
-                    "/uploads/" +
-                    item.image_link
-                  }
-                  alt=""
-                />
-              </Link>
-              <div className="">{item.name}</div>
-            </>
-          ))}
-        </Slider>
-        {/* )} */}
+        {loading ? (
+          <Skeleton
+            className="skeleton"
+            containerClassName="slide-skeleton"
+            count={3}
+          />
+        ) : (
+          <Slider {...settings} className="hot-promotion__list  text-center">
+            {hotPromoList.map((item, index) => {
+              return (
+                <div key={index}>
+                  <Link
+                    className="hot-promotion__item"
+                    to={`/product/${item.id}`}
+                  >
+                    <div className="discount">{"-" + item.discount + "%"}</div>
+                    <img
+                      className="img-fluid"
+                      src={
+                        process.env.REACT_APP_BACKEND_URL +
+                        "/uploads/" +
+                        item.image_link
+                      }
+                      alt=""
+                    />
+                  </Link>
+                  <div className="">{item.name}</div>
+                </div>
+              );
+            })}
+          </Slider>
+        )}
       </div>
       {/* </div> */}
     </section>

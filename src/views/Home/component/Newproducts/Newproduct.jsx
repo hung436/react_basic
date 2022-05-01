@@ -92,13 +92,13 @@ function Newproduct() {
             /> */}
         {/* ) : ( */}
         <Slider {...settings} className="hot-promotion__list  text-center">
-          {newPromoList.map((item) => (
-            <>
-              <Link
-                key={item.id}
-                className="hot-promotion__item"
-                to={`/product/${item.id}`}
-              >
+          {newPromoList.map((item, index) => (
+            <div key={index}>
+              <Link className="hot-promotion__item" to={`/product/${item.id}`}>
+                {item.discount > 0 && (
+                  <div className="discount">{"-" + item.discount + "%"}</div>
+                )}
+
                 <img
                   className="img-fluid"
                   src={
@@ -110,7 +110,7 @@ function Newproduct() {
                 />
               </Link>
               <div className="">{item.name}</div>
-            </>
+            </div>
           ))}
         </Slider>
       </div>

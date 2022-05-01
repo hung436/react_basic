@@ -45,7 +45,10 @@ export default function OrderItem(props) {
             : "Đã giao hàng"}
         </div>
         <div className="col-md-3 col-lg-3 col-xl-2 ">
-          <Link onClick={showChiTiet}> Xem chi tiết</Link>
+          <Link to={""} onClick={showChiTiet}>
+            {" "}
+            Xem chi tiết
+          </Link>
         </div>
       </div>
       <ModalOrder show={show} onHide={onHide} data={data} />

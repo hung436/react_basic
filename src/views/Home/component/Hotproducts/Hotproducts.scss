@@ -59,26 +59,39 @@
       }
     }
 
-    // .slide-skeleton {
-    //   display:flex;
-    //   justify-content: center;
-    //   align-items: center;
+    .slide-skeleton {
+      display:flex;
+      justify-content: center;
+      align-items: center;
 
-    //   .skeleton {
-    //     display: block;
-    //     height: 283px;
-    //     width: 360px;
-    //   }
+      .skeleton {
+        display: block;
+        height: 283px;
+        width: 360px;
+      }
 
-    //   .skeleton:nth-child(3) {
-    //     margin: 0 35px;
-    //   }
-    // }
+      .skeleton:nth-child(3) {
+        margin: 0 35px;
+      }
+    }
 
     .hot-promotion__list {
+      
       display:flex;
       flex-flow: row nowrap;
       // justify-content: space-between;
+      .hot-promotion__item{
+        position: relative;
+        text-decoration: none;
+        .discount{
+          position: absolute;
+         width: 50px;
+         border-radius: 3px;
+          background-color:red;
+          color: #fff;
+          z-index: 1000;
+        }
+      }
       .slick-next,
       .slick-prev{
         z-index: 1;

@@ -84,7 +84,7 @@ axiosClient.interceptors.response.use(
             refreshToken: refresh,
           }
         );
-
+        await localStorage.removeItem(StorageKeys.TOKEN);
         await localStorage.setItem(StorageKeys.TOKEN, res.data);
 
         return axiosClient(config);
