@@ -1,44 +1,35 @@
 import React from "react";
-
+import transactionIcon from "../../../../assets/images/Untitled.svg";
+import gitfIcon from "../../../../assets/images/gift-green-icon.svg";
+import presentIcon from "../../../../assets/images/percent-green-icon.svg";
+import expressIcon from "../../../../assets/images/delivery-green-icon.svg";
+import "./QC.scss";
 export default function QC() {
   return (
-    <div className="row">
+    <div className="row" id="container">
       <div className="col-md-6 col-sm-6 col-6 bg-light text-center">
         <div className=" align-center d-flex justify-content-center ">
-          <img
-            src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/https://fptshop.com.vn/Uploads/images/2022/iconcate/icon-mobile.png"
-            alt=""
-          />
+          <img className="img-fluid" src={presentIcon} alt="" />
         </div>
-        <p>Điện thoại</p>
+        <p>Sản phẩm chính hãng</p>
       </div>
       <div className="col-md-6 col-sm-6 col-6 bg-light text-center">
         <div className=" align-center d-flex justify-content-center ">
-          <img
-            src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/https://fptshop.com.vn/Uploads/images/2022/iconcate/icon-mobile.png"
-            alt=""
-          />
+          <img className="img-fluid" src={expressIcon} alt="" />
         </div>
-        <p>Điện thoại</p>
+        <p>Giao hàng toàn quốc</p>
       </div>
       <div className="col-md-6 col-sm-6 col-6 bg-light text-center">
         <div className=" align-center d-flex justify-content-center ">
-          <img
-            className="img-fluid"
-            src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/https://fptshop.com.vn/Uploads/images/2022/iconcate/icon-mobile.png"
-            alt=""
-          />
+          <img className="img-fluid" src={gitfIcon} alt="" />
         </div>
-        <p>Điện thoại</p>
+        <p>Tích điểm đổi quà</p>
       </div>
       <div className="col-md-6 col-sm-6 col-6 bg-light text-center">
         <div className=" align-center d-flex justify-content-center ">
-          <img
-            src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/https://fptshop.com.vn/Uploads/images/2022/iconcate/icon-mobile.png"
-            alt=""
-          />
+          <img className="img-card" src={transactionIcon} alt="" />
         </div>
-        <p>Điện thoại</p>
+        <p>Thanh toán linh hoạt</p>
       </div>
     </div>
   );

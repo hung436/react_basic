@@ -54,9 +54,7 @@ export default function Product(props) {
       } catch (error) {
         //   toast.error('Error');
         //   dispatch(adminLogout());
-      } finally {
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     };
     fetchapi();
   });

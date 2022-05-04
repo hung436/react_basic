@@ -60,7 +60,7 @@ function Newproduct() {
     const fetchapi = async () => {
       const res = await getProduct(0);
 
-      let list = res.data;
+      let list = res.data.rows;
       if (mouted.current) setNewPromoList(list);
     };
     fetchapi();

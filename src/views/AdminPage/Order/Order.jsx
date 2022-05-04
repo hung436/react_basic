@@ -1,60 +1,24 @@
-import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Table,
-  ButtonGroup,
-  Pagination,
-  Row,
-  Form,
-} from "react-bootstrap";
-// import ModalProduct from "./ModalProduct";
-// import ModalProductUD from "./ModalProductUD";
+import React, { useState, useEffect, useRef } from "react";
+import { Table, Pagination, Row, Form } from "react-bootstrap";
+import ReactToPrint from "react-to-print";
 import { useDispatch } from "react-redux";
-import {
-  createProduct,
-  getAllOrder,
-  deleteProduct,
-  updateProduct,
-} from "../../../services/productService";
+import { getAllOrder, changeOrder } from "../../../services/productService";
 import { adminLogout } from "../adminSlice";
-import { convertFromHTML, ContentState } from "draft-js";
-import { EditorState } from "draft-js";
+
+import { ComponentToPrint } from "./ComponentToPrint";
 import { toast } from "react-toastify";
 export default function Order(props) {
-  const [modalShow, setModalShow] = useState(false);
-  const [modalShowUD, setModalShowUD] = useState(false);
-  const [ID, setID] = useState({});
   const [Order, serOrder] = useState([]);
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
   const [Page, setPage] = useState(0);
   const [Count, setCount] = useState(0);
   const dispatch = useDispatch();
-  const handleSubmit = async (formData) => {
-    try {
-      const res = await createProduct(formData);
-
-      if (res.errorCode === 0) {
-        toast.success("Thêm sản phẩm thành công!");
-      } else if (res.errorCode === 1) {
-        toast.warning(res.message);
-      }
-    } catch (err) {
-      toast.error("Error");
+  const componentRef = useRef();
+  const handleChange = async (status, id) => {
+    let res = await changeOrder(id, status.target.value);
+    if (res && res.errorCode === 1) {
+      toast.success(res.message);
     }
-  };
-  const handleUpdate = async (formData) => {
-    try {
-      const res = await updateProduct(formData);
-
-      if (res.errorCode === 0) {
-        toast.success("Sửa sản phẩm thành công!");
-      }
-    } catch (err) {
-      toast.error("Error");
-    }
-  };
-  const handleChange = (value) => {
-    alert(value.target.value);
   };
   useEffect(() => {
     let fetchapi = async () => {
@@ -90,10 +54,11 @@ export default function Order(props) {
 
   return (
     <div className="px-2">
-      <Button variant="success" onClick={() => setModalShow(true)}>
-        Thêm sản phẩm
-      </Button>
-
+      <ReactToPrint
+        trigger={() => <button>Print this out!</button>}
+        content={() => componentRef.current}
+      />
+      <ComponentToPrint ref={componentRef} />
       <div style={{ height: "70vh" }}>
         <Table responsive="sm">
           <thead>
@@ -120,31 +85,31 @@ export default function Order(props) {
                     <Form.Select
                       size="sm"
                       value={p.status}
-                      onChange={(e) => handleChange(e)}
+                      onChange={(e) => handleChange(e, p.id)}
                     >
-                      <option value="1">Chờ xác nhận</option>
-                      <option value="2">Đang giao</option>
-                      <option value="3">Đã giao</option>
+                      <option
+                        value="1"
+                        hidden={p.status >= 1}
+                        disabled={p.status === 1}
+                      >
+                        Chờ xác nhận
+                      </option>
+                      <option
+                        value="2"
+                        hidden={p.status >= 2}
+                        disabled={p.status === 2}
+                      >
+                        Đang giao
+                      </option>
+                      <option
+                        value="3"
+                        hidden={p.status === 1 || p.status === 3}
+                      >
+                        Đã giao
+                      </option>
                     </Form.Select>
                   </td>
                   <td>{p.createdAt}</td>
-
-                  {/* <td>
-                    <ButtonGroup>
-                      <button
-                        className="btn btn-warning"
-                        // onClick={() => updateProducts(p)}
-                      >
-                        <i className="fa-solid fa-pen-to-square"></i>
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        // onClick={() => deleteProducts(p.id)}
-                      >
-                        <i className="fa-solid fa-trash-can"></i>
-                      </button>
-                    </ButtonGroup>
-                  </td> */}
                 </tr>
               );
             })}

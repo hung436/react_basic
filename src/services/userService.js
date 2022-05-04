@@ -5,8 +5,8 @@ const loginuser = (data) => {
     password: data.password,
   });
 };
-const getOrders = () => {
-  return axios.get(`/getorder`);
+const getOrders = (page) => {
+  return axios.get(`/getorder`, { params: { page: page } });
 };
 const getOrderDetail = (id) => {
   return axios.get("/getorderdetail", { params: { id: id } });
@@ -21,7 +21,9 @@ const addFavorites = (id) => {
 const deteleFavoriteProduct = (id) => {
   return axios.delete("/detelefavoriteproduct", { data: { id: id } });
 };
-const changeAddress = (data) => {};
+const changeAddress = (data) => {
+  return axios.put("/changeaddress", { data });
+};
 const getAddress = () => {
   return axios.get("/getaddress");
 };

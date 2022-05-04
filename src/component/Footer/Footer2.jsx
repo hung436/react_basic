@@ -106,7 +106,7 @@ export default function Footer2() {
             </div>
             <div className="col-md-2 col-12 d-flex justify-content-center ">
               <div>
-                <h3 className="footer__heading">Vào cửa hàng của Thắng</h3>
+                <h3 className="footer__heading">Vào cửa hàng</h3>
                 <div className="footer__download">
                   <img
                     src={QRcode}

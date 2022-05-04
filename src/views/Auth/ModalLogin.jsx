@@ -27,7 +27,7 @@ function ModalLogin(props) {
         <Modal.Body>
           <Tabs
             defaultActiveKey="login"
-            id="uncontrolled-tab-example"
+            // id="uncontrolled-tab-example"
             className="mb-3"
           >
             <Tab eventKey="login" title="Đăng Nhập ">

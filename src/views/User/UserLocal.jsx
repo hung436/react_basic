@@ -49,18 +49,7 @@ export default function UserLocal() {
   const handleSubmit = async (values) => {
     try {
       const res = await changeAddress(values);
-      res.status === 200 && toast.success("Cập nhật thông tin thành công!");
-      if (res.data) {
-        const data = res.data[0];
-        data.id && dispatch(addAddressId(data.id));
-        const newData = {
-          province: data.province,
-          district: data.district,
-          ward: data.ward,
-          street_name: data.street_name,
-        };
-        setAddress(newData);
-      }
+      res.errorCode === 0 && toast.success("Cập nhật thông tin thành công!");
     } catch (error) {}
   };
 

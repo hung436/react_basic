@@ -8,8 +8,10 @@ const queryString = require("query-string");
 export default function Order() {
   const location = useLocation();
   const history = useHistory();
+  const [page, setPage] = useState(0);
   const [pagination, setPagination] = useState({});
   const [orderItem, setorderItem] = useState([]);
+  const [total, setTotal] = useState(0);
   const queryParams = useMemo(() => {
     const params = queryString.parse(location.search);
     return {
@@ -20,52 +22,49 @@ export default function Order() {
   useEffect(() => {
     (async function () {
       try {
-        const res = await getOrders();
-        setorderItem(res.data);
+        const res = await getOrders(page);
+        setorderItem(res.data.rows);
+        setTotal(res.data.count);
         // rs.data && formatData(rs.data);
         // setPagination(rs.pagination);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
-  const handlePageClick = (e) => {
-    // const currentPage = e.selected + 1;
-    // const filters = {
-    //   ...queryParams,
-    //   page: currentPage,
-    // };
-    // history.push({
-    //   pathname: history.location.pathname,
-    //   search: queryString.stringify(filters),
-    // });
+  }, [page]);
+  const handlePageClick = (numberPage) => {
+    setPage(numberPage - 1);
   };
   return (
-    <div className="p-5">
-      <div className="d-flex justify-content-between align-items-center mb-5">
+    <div className="">
+      <div className="text-center mb-5">
         <h1 className="fw-bold mb-0 text-black"> ĐƠN HÀNG</h1>
       </div>
-      <div>
+      <div className="bg-primary text-light">
         <hr className="" />
-        <div className="row mb-4 d-flex justify-content-between align-items-center">
-          <div className="col-md-1 col-lg-1 col-xl-1">Mã đơn hàng</div>
-          <div className="col-md-2 col-lg-2 col-xl-2">Ngày Mua</div>
-          <div className="col-md-3 col-lg-3 col-xl-2 ">Địa Chỉ Giao Hàng</div>
-          <div className="col-md-2 col-lg-2 col-xl-2 ">Tổng Tiền</div>
-          <div className="col-md-3 col-lg-3 col-xl-2 ">Trạng Thái</div>
-          <div className="col-md-3 col-lg-3 col-xl-2 ">Chi tiết</div>
+        <div className="row d-flex justify-content-between align-items-center flex-row flex-nowrap ">
+          <div className="col-1">Mã</div>
+          <div className=" col-2">Ngày Mua</div>
+          <div className=" col-2 ">Địa Chỉ Giao Hàng</div>
+          <div className="col-2 ">Tổng Tiền</div>
+          <div className="col-3 ">Trạng Thái</div>
+          <div className="col-2  ">Chi tiết</div>
         </div>
       </div>
       {orderItem &&
         orderItem.map((item, idx) => <OrderItem item={item} key={idx} />)}
-      <hr className="my-4" />
-      <Pagination
-        currentPage={1}
-        totalSize={20}
-        sizePerPage={5}
-        changeCurrentPage={handlePageClick}
-        theme="bootstrap"
-      />
+      <hr className="mb-4" />
+      <div className="d-flex justify-content-center align-items-center">
+        <Pagination
+          currentPage={page + 1}
+          totalSize={total}
+          sizePerPage={5}
+          changeCurrentPage={handlePageClick}
+          theme="bootstrap"
+          showFirstLastPages
+        />
+      </div>
+
       <div className="pt-5">
         <h6 className="mb-0">
           <Link to="/" className="text-body">

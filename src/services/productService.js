@@ -24,6 +24,9 @@ const getProductByID = (id) => {
 const getAllOrder = (page) => {
   return axios.get("/getallorder", { params: { page: page } });
 };
+const changeOrder = (id, status) => {
+  return axios.put("/changeorder", { id, status });
+};
 export {
   createProduct,
   getProduct,
@@ -32,4 +35,5 @@ export {
   getProductByID,
   getProductFill,
   getAllOrder,
+  changeOrder,
 };

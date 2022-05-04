@@ -14,7 +14,7 @@ export default function Products() {
     const fetchapi = async () => {
       const res = await getProduct(0);
 
-      setList(res.data);
+      setList(res.data.rows);
     };
     fetchapi();
 

@@ -60,12 +60,12 @@ function CartTotal({ showLoading, hideLoading }) {
       };
 
       try {
-        const rs = await order(dataSend);
-        if (rs.errorCode === 0) {
+        const res = await order(dataSend);
+        if (res.errorCode === 0) {
           const action = paymentSuccess();
           dispatch(action);
           toast.success("Đặt hàng thành công!");
-          history.replace(`${path.url}/success`);
+          history.replace(`${path.url}/success/${res.id}`);
         }
       } catch (error) {
         console.log(error);

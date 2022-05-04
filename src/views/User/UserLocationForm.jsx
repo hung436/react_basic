@@ -35,7 +35,6 @@ export default function UserLocationForm(props) {
   }, [address]);
 
   const handleSubmit = (values) => {
-    alert(JSON.stringify(values));
     if (!onSubmit) return;
     onSubmit(values);
   };
