@@ -45,7 +45,7 @@ export default function Product(props) {
   };
 
   useEffect(() => {
-    let fetchapi = async () => {
+    (async () => {
       try {
         const res = await getProduct(Page);
         // mapData(res.data);
@@ -55,9 +55,8 @@ export default function Product(props) {
         //   toast.error('Error');
         //   dispatch(adminLogout());
       }
-    };
-    fetchapi();
-  });
+    })();
+  }, [Page]);
 
   const deleteProducts = (id) => {
     if (window.confirm("Delete the item?")) {

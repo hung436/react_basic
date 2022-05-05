@@ -21,7 +21,7 @@ export default function Order(props) {
     }
   };
   useEffect(() => {
-    let fetchapi = async () => {
+    (async () => {
       try {
         const res = await getAllOrder(Page);
         // mapData(res.data);
@@ -32,10 +32,8 @@ export default function Order(props) {
         dispatch(adminLogout());
       } finally {
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    };
-    fetchapi();
-  });
+    })();
+  }, [Page]);
 
   let items = [];
   for (let number = 1; number <= Math.ceil(Count / 5); number++) {
