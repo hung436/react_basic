@@ -12,10 +12,12 @@ export default function Order(props) {
 
   const [Page, setPage] = useState(0);
   const [Count, setCount] = useState(0);
+  const [status, setStatus] = useState(1);
   const dispatch = useDispatch();
   const componentRef = useRef();
   const handleChange = async (status, id) => {
     let res = await changeOrder(id, status.target.value);
+    setStatus(status.target.value);
     if (res && res.errorCode === 1) {
       toast.success(res.message);
     }
@@ -26,6 +28,7 @@ export default function Order(props) {
         const res = await getAllOrder(Page);
         // mapData(res.data);
         serOrder(res.data.rows);
+        setStatus(res.data.rows.status);
         setCount(res.data.count);
       } catch (error) {
         toast.error("Error");
@@ -33,7 +36,7 @@ export default function Order(props) {
       } finally {
       }
     })();
-  }, [Page]);
+  }, [Page, status]);
 
   let items = [];
   for (let number = 1; number <= Math.ceil(Count / 5); number++) {
