@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Button, Table, ButtonGroup, Pagination, Row } from "react-bootstrap";
-import ModalProduct from "./ModalProduct";
-import ModalProductUD from "./ModalProductUD";
+import React, { useState, useEffect } from 'react';
+import { Button, Table, ButtonGroup, Pagination, Row } from 'react-bootstrap';
+import ModalProduct from './ModalProduct';
+import ModalProductUD from './ModalProductUD';
 import {
   createProduct,
   getProduct,
   deleteProduct,
   updateProduct,
-} from "../../../services/productService";
-import { convertFromHTML, ContentState } from "draft-js";
-import { EditorState } from "draft-js";
-import { toast } from "react-toastify";
+} from '../../../services/productService';
+import { convertFromHTML, ContentState } from 'draft-js';
+import { EditorState } from 'draft-js';
+import { toast } from 'react-toastify';
 export default function Product(props) {
   const [modalShow, setModalShow] = useState(false);
   const [modalShowUD, setModalShowUD] = useState(false);
@@ -24,23 +24,24 @@ export default function Product(props) {
       const res = await createProduct(formData);
 
       if (res.errorCode === 0) {
-        toast.success("Thêm sản phẩm thành công!");
+        toast.success('Thêm sản phẩm thành công!');
+        setCount(Count + 1);
       } else if (res.errorCode === 1) {
         toast.warning(res.message);
       }
     } catch (err) {
-      toast.error("Error");
+      toast.error('Error');
     }
   };
   const handleUpdate = async (formData) => {
     try {
       const res = await updateProduct(formData);
-
+      setCount(Count);
       if (res.errorCode === 0) {
-        toast.success("Sửa sản phẩm thành công!");
+        toast.success('Sửa sản phẩm thành công!');
       }
     } catch (err) {
-      toast.error("Error");
+      toast.error('Error');
     }
   };
 
@@ -56,12 +57,13 @@ export default function Product(props) {
         //   dispatch(adminLogout());
       }
     })();
-  }, [Page]);
+  }, [Page, Count]);
 
   const deleteProducts = (id) => {
-    if (window.confirm("Delete the item?")) {
+    if (window.confirm('Delete the item?')) {
       deleteProduct(id);
-      toast.success("Đã xóa sản phẩm thành công!");
+      toast.success('Đã xóa sản phẩm thành công!');
+      setCount(Count - 1);
     }
   };
   const convertText = (value) => {
@@ -72,11 +74,7 @@ export default function Product(props) {
     );
     return EditorState.createWithContent(state);
   };
-  const convert = (value) => {
-    let plainString = value.replace(/<[^>]+>/g, "");
 
-    return plainString;
-  };
   const updateProducts = (product) => {
     setModalShowUD(true);
     setID(product);
@@ -99,7 +97,7 @@ export default function Product(props) {
     );
   }
   return (
-    <div className="px-2">
+    <>
       <Button variant="success" onClick={() => setModalShow(true)}>
         Thêm sản phẩm
       </Button>
@@ -115,8 +113,8 @@ export default function Product(props) {
         editor={editorState}
         onSubmit={handleUpdate}
       />
-      <div style={{ height: "70vh" }}>
-        <Table responsive="sm">
+      <div style={{ height: '500px', 'max-width': '100vw' }}>
+        <Table responsive>
           <thead>
             <tr>
               <th>Id</th>
@@ -134,13 +132,13 @@ export default function Product(props) {
               return (
                 <tr key={index}>
                   <td>{p.id}</td>
-                  <td>{p.name}</td>
+                  <td className="">{p.name}</td>
                   <td>
                     <img
-                      style={{ width: "50px" }}
+                      style={{ width: '50px' }}
                       src={
                         process.env.REACT_APP_BACKEND_URL +
-                        "/uploads/" +
+                        '/uploads/' +
                         p.image_link
                       }
                       alt=""
@@ -149,7 +147,7 @@ export default function Product(props) {
                   <td>{p.category.name}</td>
                   <td>{p.price}</td>
                   <td>{p.discount}</td>
-                  <td>{p.highlight === 0 ? "Không" : "Có"}</td>
+                  <td>{p.highlight === 0 ? 'Không' : 'Có'}</td>
 
                   <td>
                     <ButtonGroup>
@@ -174,10 +172,14 @@ export default function Product(props) {
         </Table>
       </div>
       <Row>
-        <div className="justify-content-center text-center">
+        <div
+          className={`${
+            Count > 5 ? 'd-flex' : 'd-none'
+          } justify-content-center text-center `}
+        >
           <Pagination>{items}</Pagination>
         </div>
       </Row>
-    </div>
+    </>
   );
 }

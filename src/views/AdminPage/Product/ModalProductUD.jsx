@@ -1,12 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Formik } from "formik";
-import { Modal, Button, Row, FloatingLabel, Form } from "react-bootstrap";
-import FormData from "form-data";
-import * as yup from "yup";
-import draftToHtml from "draftjs-to-html";
-import { convertToRaw } from "draft-js";
-import { EditorState } from "draft-js";
-import TextEditor from "../../../component/form-control/TextEditor";
+import React, { useState, useRef, useEffect } from 'react';
+import { Formik } from 'formik';
+import { Modal, Button, Row, FloatingLabel, Form } from 'react-bootstrap';
+import FormData from 'form-data';
+import * as yup from 'yup';
+import draftToHtml from 'draftjs-to-html';
+import { convertToRaw } from 'draft-js';
+import { EditorState } from 'draft-js';
+import TextEditor from '../../../component/form-control/TextEditor';
+
 export default function ModalProductUD(props) {
   const { id } = props;
   const imgRef = useRef();
@@ -24,12 +25,12 @@ export default function ModalProductUD(props) {
     const handle = () => {
       setImgProduct({
         preview:
-          process.env.REACT_APP_BACKEND_URL + "/uploads/" + id.image_link,
+          process.env.REACT_APP_BACKEND_URL + '/uploads/' + id.image_link,
       });
       setEditorState(props.editor);
     };
     return handle();
-  }, [id]);
+  }, [id, props.editor]);
   useEffect(() => {
     return () => {
       imgProduct && URL.revokeObjectURL(imgProduct.preview);
@@ -37,29 +38,29 @@ export default function ModalProductUD(props) {
   }, [imgProduct]);
   const handleSubmit = (values) => {
     const formData = new FormData();
-    formData.append("id", id.id);
-    formData.append("name", values.name);
-    formData.append("price", values.price);
+    formData.append('id', id.id);
+    formData.append('name', values.name);
+    formData.append('price', values.price);
     formData.append(
-      "description",
+      'description',
       draftToHtml(convertToRaw(editorState.getCurrentContent()))
     );
-    formData.append("category", values.category);
-    formData.append("highlight", values.highlight);
-    formData.append("discount", values.discount);
+    formData.append('category', values.category);
+    formData.append('highlight', values.highlight);
+    formData.append('discount', values.discount);
     if (isEditImg) {
       const file =
         imgRef.current && imgRef.current.files && imgRef.current.files[0];
       if (!file) {
-        setErrorImage("Please enter product image");
+        setErrorImage('Please enter product image');
         return;
       }
-      formData.append("images", imgRef.current.files[0]);
+      formData.append('images', imgRef.current.files[0]);
     }
     props.onHide();
     props.onSubmit(formData);
     setEditorState(EditorState.createEmpty());
-    imgRef.current.value = "";
+    imgRef.current.value = '';
     setImgProduct(null);
   };
   const initialValues = {
@@ -198,15 +199,15 @@ export default function ModalProductUD(props) {
                       isValid={touched.file && !errors.file}
                     />
                     {imgProduct && (
-                      <img width={"25%"} src={imgProduct.preview} alt="" />
+                      <img width={'25%'} src={imgProduct.preview} alt="" />
                     )}
                     {errorImage && (
                       <span
                         style={{
-                          fontSize: "12px",
-                          margin: "6px 0 0",
-                          display: "block",
-                          color: "#ff0000",
+                          fontSize: '12px',
+                          margin: '6px 0 0',
+                          display: 'block',
+                          color: '#ff0000',
                         }}
                       >
                         {errorImage}

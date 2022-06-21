@@ -1,15 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import { createProduct } from "../../../services/productService";
-import { Formik } from "formik";
-import { Modal, Button, Row, FloatingLabel, Form } from "react-bootstrap";
-import FormData from "form-data";
-import * as yup from "yup";
-import draftToHtml from "draftjs-to-html";
-import { convertToRaw } from "draft-js";
-import { EditorState } from "draft-js";
-import TextEditor from "../../../component/form-control/TextEditor";
+import React, { useState, useRef, useEffect } from 'react';
+import { Formik } from 'formik';
+import { Modal, Button, Row, FloatingLabel, Form } from 'react-bootstrap';
+import FormData from 'form-data';
+import * as yup from 'yup';
+import draftToHtml from 'draftjs-to-html';
+import { convertToRaw } from 'draft-js';
+import { EditorState } from 'draft-js';
+import TextEditor from '../../../component/form-control/TextEditor';
 export default function ModalProduct(props) {
-  const { onsubmit } = props;
   const imgRef = useRef();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [imgProduct, setImgProduct] = useState();
@@ -29,53 +27,53 @@ export default function ModalProduct(props) {
       imgRef.current && imgRef.current.files && imgRef.current.files[0];
 
     if (!file) {
-      setErrorImage("Please enter product image");
+      setErrorImage('Please enter product image');
       return;
     }
     const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("price", values.price);
+    formData.append('name', values.name);
+    formData.append('price', values.price);
     formData.append(
-      "description",
+      'description',
       draftToHtml(convertToRaw(editorState.getCurrentContent()))
     );
-    formData.append("category", values.category);
-    formData.append("highlight", values.highlight);
-    formData.append("discount", values.discount);
-    formData.append("images", imgRef.current.files[0]);
+    formData.append('category', values.category);
+    formData.append('highlight', values.highlight);
+    formData.append('discount', values.discount);
+    formData.append('images', imgRef.current.files[0]);
     props.onHide();
     props.onSubmit(formData);
     setEditorState(EditorState.createEmpty());
-    imgRef.current.value = "";
+    imgRef.current.value = '';
     setImgProduct(null);
   };
   const initialValues = {
-    category: "",
-    name: "",
-    price: "",
-    discount: "",
-    description: "",
-    highlight: "",
+    category: '',
+    name: '',
+    price: '',
+    discount: '',
+    description: '',
+    highlight: '',
   };
-  // });
-  function uploadImageCallBack(file) {
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://api.imgur.com/3/image");
-      xhr.setRequestHeader("Authorization", "Client-ID XXXXX");
-      const data = new FormData();
-      data.append("image", file);
-      xhr.send(data);
-      xhr.addEventListener("load", () => {
-        const response = JSON.parse(xhr.responseText);
-        resolve(response);
-      });
-      xhr.addEventListener("error", () => {
-        const error = JSON.parse(xhr.responseText);
-        reject(error);
-      });
-    });
-  }
+
+  // function uploadImageCallBack(file) {
+  //   return new Promise((resolve, reject) => {
+  //     const xhr = new XMLHttpRequest();
+  //     xhr.open("POST", "https://api.imgur.com/3/image");
+  //     xhr.setRequestHeader("Authorization", "Client-ID XXXXX");
+  //     const data = new FormData();
+  //     data.append("image", file);
+  //     xhr.send(data);
+  //     xhr.addEventListener("load", () => {
+  //       const response = JSON.parse(xhr.responseText);
+  //       resolve(response);
+  //     });
+  //     xhr.addEventListener("error", () => {
+  //       const error = JSON.parse(xhr.responseText);
+  //       reject(error);
+  //     });
+  //   });
+  // }
 
   const schema = yup.object().shape({});
   return (
@@ -203,15 +201,15 @@ export default function ModalProduct(props) {
                       isValid={touched.file && !errors.file}
                     />
                     {imgProduct && (
-                      <img width={"25%"} src={imgProduct.preview} alt="" />
+                      <img width={'25%'} src={imgProduct.preview} alt="" />
                     )}
                     {errorImage && (
                       <span
                         style={{
-                          fontSize: "12px",
-                          margin: "6px 0 0",
-                          display: "block",
-                          color: "#ff0000",
+                          fontSize: '12px',
+                          margin: '6px 0 0',
+                          display: 'block',
+                          color: '#ff0000',
                         }}
                       >
                         {errorImage}

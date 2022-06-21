@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../Cart/cartSlice";
-import { openModal } from "../../../Auth/userSlice";
-import "./ProductItem.scss";
-import { toast } from "react-toastify";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../../Cart/cartSlice';
+import { openModal } from '../../../Auth/userSlice';
+import './ProductItem.scss';
+import { toast } from 'react-toastify';
 export default function ProductItem(props) {
   const { item } = props;
   const dispatch = useDispatch();
@@ -36,10 +36,10 @@ export default function ProductItem(props) {
       //   });
       // }
       dispatch(action);
-      toast.success("Thêm vào giỏ hàng thành công!");
+      toast.success('Thêm vào giỏ hàng thành công!');
       return;
     }
-    toast.warn("Đăng nhập để thêm vào giỏ hàng!");
+    toast.warn('Đăng nhập để thêm vào giỏ hàng!');
     const action = openModal();
     dispatch(action);
   };
@@ -52,10 +52,10 @@ export default function ProductItem(props) {
             className="bg-image hover-zoom ripple shadow-1-strong rounded"
           >
             <img
-              className="img-thumbnail"
+              className=""
               src={
                 process.env.REACT_APP_BACKEND_URL +
-                "/uploads/" +
+                '/uploads/' +
                 item.image_link
               }
               alt=""
@@ -64,7 +64,7 @@ export default function ProductItem(props) {
           {item.discount !== 0 ? (
             <span className="product-discount-label">{-item.discount}%</span>
           ) : (
-            ""
+            ''
           )}
           <ul className="product-links">
             <li>
@@ -77,11 +77,7 @@ export default function ProductItem(props) {
                 <i className="fa fa-heart" />
               </div>
             </li>
-            <li>
-              {/* <Link >
-                <i className="fa fa-random" />
-              </Link> */}
-            </li>
+
             <li>
               <div onClick={handleAddToCartClick}>
                 <i className="fa-solid fa-cart-plus"></i>
@@ -96,21 +92,21 @@ export default function ProductItem(props) {
           <div className="price">
             {isPromo ? (
               <>
-                {priceAfterDiscount.toLocaleString("it-IT", {
-                  style: "currency",
-                  currency: "VND",
-                })}{" "}
+                {priceAfterDiscount.toLocaleString('it-IT', {
+                  style: 'currency',
+                  currency: 'VND',
+                })}{' '}
                 <span>
-                  {item.price.toLocaleString("it-IT", {
-                    style: "currency",
-                    currency: "VND",
+                  {item.price.toLocaleString('it-IT', {
+                    style: 'currency',
+                    currency: 'VND',
                   })}
                 </span>
               </>
             ) : (
-              item.price.toLocaleString("it-IT", {
-                style: "currency",
-                currency: "VND",
+              item.price.toLocaleString('it-IT', {
+                style: 'currency',
+                currency: 'VND',
               })
             )}
           </div>

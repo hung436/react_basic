@@ -1,16 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./styles/global.scss";
-import App from "./views/App";
-import { ToastContainer } from "react-toastify";
-import reportWebVitals from "./reportWebVitals";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-import ScrollToTop from "./component/ScrollToTop";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './styles/global.scss';
+import App from './views/App';
+import { ToastContainer } from 'react-toastify';
+import reportWebVitals from './reportWebVitals';
+
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import ScrollToTop from './component/ScrollToTop';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -31,7 +29,7 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

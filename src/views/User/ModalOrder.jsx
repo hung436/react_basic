@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 // import { getOrderDetail } from "../../services/userService";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 export default function ModalOrder(props) {
   const { show, onHide, data } = props;
 
@@ -39,7 +39,7 @@ export default function ModalOrder(props) {
                         className="img-thumbnail"
                         src={
                           process.env.REACT_APP_BACKEND_URL +
-                          "/uploads/" +
+                          '/uploads/' +
                           item.product.image_link
                         }
                         alt=""

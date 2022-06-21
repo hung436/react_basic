@@ -1,23 +1,15 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Link, useLocation, useHistory } from "react-router-dom";
-import OrderItem from "./OrderItem";
-import { getOrders } from "../../services/userService";
-import Pagination from "react-pagination-js";
-import "react-pagination-js/dist/styles.css";
-const queryString = require("query-string");
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import OrderItem from './OrderItem';
+import { getOrders } from '../../services/userService';
+import Pagination from 'react-pagination-js';
+import 'react-pagination-js/dist/styles.css';
+
 export default function Order() {
-  const location = useLocation();
-  const history = useHistory();
   const [page, setPage] = useState(0);
-  const [pagination, setPagination] = useState({});
+  // const [pagination, setPagination] = useState({});
   const [orderItem, setorderItem] = useState([]);
   const [total, setTotal] = useState(0);
-  const queryParams = useMemo(() => {
-    const params = queryString.parse(location.search);
-    return {
-      ...params,
-    };
-  }, [location.search]);
 
   useEffect(() => {
     (async function () {

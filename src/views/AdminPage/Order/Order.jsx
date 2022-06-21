@@ -36,7 +36,7 @@ export default function Order(props) {
       } finally {
       }
     })();
-  }, [Page, status]);
+  }, [Page, status, dispatch]);
 
   let items = [];
   for (let number = 1; number <= Math.ceil(Count / 5); number++) {
@@ -77,6 +77,7 @@ export default function Order(props) {
             {Order.map((p, index) => {
               return (
                 <tr key={index}>
+                  
                   <td>{p.id}</td>
                   <td>{p.userId}</td>
                   <td>{p.payment_method}</td>
@@ -118,7 +119,7 @@ export default function Order(props) {
         </Table>
       </div>
       <Row>
-        <div className="justify-content-center text-center">
+        <div className="d-flex justify-content-end ">
           <Pagination>{items}</Pagination>
         </div>
       </Row>

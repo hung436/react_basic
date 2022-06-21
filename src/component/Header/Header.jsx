@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import Navigate from "./component/Navigate";
-import ModalLogin from "../../views/Auth/ModalLogin";
-import "./Header.scss";
-import { NavDropdown, Navbar, Container, Nav } from "react-bootstrap";
-import HeaderLogo from "../../assets/images/header-logo.svg";
-import { Link } from "react-router-dom";
-import "./Header.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { logout, openModal, closeModal } from "../../views/Auth/userSlice";
-import { toast } from "react-toastify";
-import { cartItemsCountSelector } from "../../views/Cart/selector";
+import React, { useState } from 'react';
+import Navigate from './component/Navigate';
+import ModalLogin from '../../views/Auth/ModalLogin';
+import './Header.scss';
+import { NavDropdown, Navbar, Container, Nav } from 'react-bootstrap';
+import HeaderLogo from '../../assets/images/header-logo.svg';
+import { Link } from 'react-router-dom';
+import './Header.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, openModal, closeModal } from '../../views/Auth/userSlice';
+import { toast } from 'react-toastify';
+import { cartItemsCountSelector } from '../../views/Cart/selector';
 const Header = () => {
   const countCart = useSelector(cartItemsCountSelector);
   const user = useSelector((state) => state.user.current);
+  console.log(user);
   const modal = useSelector((state) => state.user.modalIsOpen);
   const handleClose = () => {
     const action = closeModal();
@@ -75,7 +76,7 @@ const Header = () => {
                 <NavDropdown.Item className="text-dark bg-warning" disabled>
                   Xin chào
                   <span className="text-primary">
-                    {" "}
+                    {' '}
                     {" '" + user.name + "'"}
                   </span>
                 </NavDropdown.Item>
@@ -93,7 +94,7 @@ const Header = () => {
                   Địa chỉ giao hàng
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() => toast.warning("Tính năng đang phất triển")}
+                  onClick={() => toast.warning('Tính năng đang phất triển')}
                 >
                   Language
                 </NavDropdown.Item>
@@ -108,9 +109,9 @@ const Header = () => {
                 onClick={handleShow}
               >
                 {/* <i className="fa-solid fa-circle-user "></i> */}
-                <Link>
+                <div>
                   <i className="fa-solid fa-arrow-right-to-bracket fs-3 text-light"></i>
-                </Link>
+                </div>
               </div>
             )}
           </div>
@@ -129,7 +130,7 @@ const Header = () => {
                 </div>
               </Link>
             </div>
-            {user ? (
+            {user !== null ? (
               <NavDropdown
                 title={
                   <>
@@ -142,7 +143,7 @@ const Header = () => {
                 <NavDropdown.Item className="text-dark bg-warning" disabled>
                   Xin chào
                   <span className="text-primary">
-                    {" "}
+                    {' '}
                     {" '" + user.name + "'"}
                   </span>
                 </NavDropdown.Item>
@@ -160,7 +161,7 @@ const Header = () => {
                   Địa chỉ giao hàng
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() => toast.warning("Tính năng đang phất triển")}
+                  onClick={() => toast.warning('Tính năng đang phất triển')}
                 >
                   Language
                 </NavDropdown.Item>
@@ -172,9 +173,9 @@ const Header = () => {
             ) : (
               <div className="" onClick={handleShow}>
                 {/* <i className="fa-solid fa-circle-user "></i> */}
-                <Link>
+                <div>
                   <i className="fa-solid fa-arrow-right-to-bracket fs-3 text-light"></i>
-                </Link>
+                </div>
               </div>
             )}
           </div>
@@ -189,17 +190,17 @@ const Header = () => {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to={"/product"} eventKey="/product">
+                <Nav.Link as={Link} to={'/product'} eventKey="/product">
                   Sản phẩm
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to={"/cart"} eventKey="/cart">
+                <Nav.Link as={Link} to={'/cart'} eventKey="/cart">
                   Giỏ hàng
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to={"about"} eventKey="about">
+                <Nav.Link as={Link} to={'about'} eventKey="about">
                   Về chúng tôi
                 </Nav.Link>
               </Nav.Item>

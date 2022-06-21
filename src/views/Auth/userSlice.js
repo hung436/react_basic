@@ -1,14 +1,14 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginuser, registeruser } from "../../services/userService";
-import { StorageKeys } from "../../constant/storage-key";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { loginuser, registeruser } from '../../services/userService';
+import { StorageKeys } from '../../constant/storage-key';
 
-export const register = createAsyncThunk("auth/register", async (payload) => {
+export const register = createAsyncThunk('auth/register', async (payload) => {
   //call API to register
   const data = await registeruser(payload);
   return data;
 });
 
-export const login = createAsyncThunk("auth/login", async (payload) => {
+export const login = createAsyncThunk('auth/login', async (payload) => {
   //call API to login
   const data = await loginuser(payload);
 
@@ -33,7 +33,7 @@ const initialState = {
 };
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     openModal: (state) => {
@@ -68,13 +68,15 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      const user = {
-        name: action.payload.username,
+      if (action.payload.errorCode === 0) {
+        const user = {
+          name: action.payload.username,
 
-        id: action.payload.userID,
-        access_token: action.payload.accessToken,
-      };
-      state.current = user;
+          id: action.payload.userID,
+          access_token: action.payload.accessToken,
+        };
+        state.current = user;
+      }
     },
   },
 });

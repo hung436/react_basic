@@ -12,7 +12,13 @@ export default function HeaderAD(props) {
   };
   return (
     <div>
-      <Navbar bg="primary" variant="dark" expand="lg" sticky="top">
+      <Navbar
+        bg="primary"
+        variant="dark"
+        expand="lg"
+        sticky="top"
+        className="d-md-none"
+      >
         <Container>
           <Navbar.Brand as={Link} to="/">
             Trang chủ

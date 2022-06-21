@@ -9,6 +9,7 @@ export default function User(props) {
   const [ID, setID] = useState({});
   const [use, setuse] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const fetchapi = useCallback(async () => {
     setLoading(true);
     try {
@@ -37,7 +38,7 @@ export default function User(props) {
     setID(user);
   };
   return (
-    <div className="container-fluid">
+    <div className="w-100">
       <h1 className="text-center">QUẢN LÝ NGƯỜI DÙNG</h1>
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Thêm
@@ -53,7 +54,7 @@ export default function User(props) {
           <tr>
             <th>ID</th>
             <th>Username</th>
-            <th>Password</th>
+
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -68,7 +69,7 @@ export default function User(props) {
               <tr>
                 <td>{item.id}</td>
                 <td>{item.username}</td>
-                <td>{item.password}</td>
+
                 <td>{item.firstname}</td>
                 <td>{item.lastname}</td>
                 <td>{item.email}</td>

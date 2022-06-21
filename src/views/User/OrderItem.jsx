@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import ModalOrder from "./ModalOrder";
-import { getOrderDetail } from "../../services/userService";
+import React, { useState } from 'react';
+
+import ModalOrder from './ModalOrder';
+import { getOrderDetail } from '../../services/userService';
 export default function OrderItem(props) {
   const { item } = props;
 
@@ -31,16 +31,16 @@ export default function OrderItem(props) {
         <div className="col-2 ">{item.price}</div>
         <div className="col-3">
           {item.status === 1
-            ? "Chờ xác nhận"
+            ? 'Chờ xác nhận'
             : item.status === 2
-            ? "Đang giao hàng"
-            : "Đã giao hàng"}
+            ? 'Đang giao hàng'
+            : 'Đã giao hàng'}
         </div>
         <div className="col-2 ">
           <div
             onClick={showChiTiet}
             className="text-primary text-decoration-underline fst-italic "
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           >
             Xem chi tiết
           </div>

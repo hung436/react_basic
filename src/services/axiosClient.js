@@ -1,39 +1,39 @@
-import axios from "axios";
-import { StorageKeys } from "../constant/storage-key";
+import axios from 'axios';
+import { StorageKeys } from '../constant/storage-key';
 
 // eslint-disable-next-line no-unused-vars
 // import _ from "lodash";
 // import config from "./config";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL + "/api",
+  baseURL: process.env.REACT_APP_BACKEND_URL + '/api',
   // withCredentials: true
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     const URLS = [
-      "/getaddress",
-      "/order",
-      "/getorder",
-      "/getorderdetail",
-      "/addfavorite",
-      "/getfavoriteproduct",
-      "/detelefavoriteproduct",
-      "/changeaddress",
+      '/getaddress',
+      '/order',
+      '/getorder',
+      '/getorderdetail',
+      '/addfavorite',
+      '/getfavoriteproduct',
+      '/detelefavoriteproduct',
+      '/changeaddress',
     ];
 
-    const dynamicURL = ["/user/favorites/"];
+    const dynamicURL = ['/user/favorites/'];
     const dynamicURLNeedToken = dynamicURL.some((item) => {
       return config.url.includes(item);
     });
 
     if (URLS.includes(config.url) || dynamicURLNeedToken) {
       const token = localStorage.getItem(StorageKeys.TOKEN);
-      config.headers.authorization = token ? `Bearer ${token}` : "";
+      config.headers.authorization = token ? `Bearer ${token}` : '';
     }
 
     // const URLSADMIN = [
@@ -76,11 +76,11 @@ axiosClient.interceptors.response.use(
     if (status === 401 && !config._retry) {
       config._retry = true;
       try {
-        const user = JSON.parse(localStorage.getItem(StorageKeys.USER));
+        const user = JSON.parse(localStorage.getItem(StorageKeys.USER)) || null;
         const refresh = user.refreshToken;
 
         const res = await axios.post(
-          process.env.REACT_APP_BACKEND_URL + "/api/refresh",
+          process.env.REACT_APP_BACKEND_URL + '/api/refresh',
           {
             refreshToken: refresh,
           }

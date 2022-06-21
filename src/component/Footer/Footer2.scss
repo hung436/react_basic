@@ -1,99 +1,82 @@
-:root{
-    --while-color:#fff;
-    --black-color:#000;
-    --text-color:#333;
-    --primary-color:#a4141f;
-    --boder-color: #777;
-    --star-gold-color: #ffce3e;
-
-  
-    
+:root {
+  --while-color: #fff;
+  --black-color: #000;
+  --text-color: #333;
+  --primary-color: #a4141f;
+  --boder-color: #777;
+  --star-gold-color: #ffce3e;
 }
 
+.footer {
+  overflow: hidden;
+  border-top: 4px solid var(--primary-color);
+  padding-top: 16px;
+  background-color: var(--while-color);
+  &__heading {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+  }
+  &-list {
+    padding-left: 0;
+    list-style: none;
+    .footer-item-link {
+      text-decoration: none;
+      font-size: 1rem;
+      color: #333;
+      padding: 2px 0;
+      display: flex;
+      align-items: center;
 
-.footer{
+      &:hover {
+        transition: all 0.3s ease-in-out;
+        color: rgb(9, 147, 165);
 
-    border-top: 4px solid var(--primary-color);
-    padding-top: 16px;
-    background-color: var(--while-color);
-    &__heading{
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        color: var(--text-color);
+        &::before {
+          font-family: FontAwesome;
+          content: '\f0a4';
+          color: #ffce3e;
+        }
+      }
     }
-    &-list{
-        padding-left: 0;
-        list-style: none;
-        .footer-item-link{
-            text-decoration: none;
-            font-size: 1rem;
-            color: #333;
-            padding: 2px 0;
-            display: flex;
-            align-items: center;
-       
-            &:hover{
-                transition: all 0.3s ease-in-out;
-                color: rgb(9, 147, 165);
+    .footer-item__icon {
+      font-size: 1.8rem;
+      margin-top: 1px;
+      margin-right: 8px;
+    }
+  }
+  .footer__download {
+    display: flex;
+    &-qr {
+      width: 80px;
+      height: 80px;
+    }
+    &-apps {
+      flex: 1;
+      margin-left: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &-link {
+        text-decoration: none;
+        color: transparent;
+      }
+    }
+    &-app-img {
+      height: 16px;
+      margin-top: 8px;
+    }
+  }
 
-                &::before{
-                    
-                    font-family: FontAwesome;
-                    content: "\f0a4";
-                    color:#ffce3e
-                   
-                    
-                }
-            }
-        }
-        .footer-item__icon{
-            font-size: 1.8rem;
-            margin-top: 1px;
-            margin-right: 8px;
-        }
-       
-    
-    }
-    .footer__download{
-        
-        display: flex;
-        &-qr{
-         width: 80px; height: 80px;
-        }
-        &-apps{ 
-            flex:1;
-            margin-left: 16px;
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            &-link{
-                text-decoration: none;
-                color:transparent;
-            }
-        }
-        &-app-img{
-            height: 16px;
-            margin-top: 8px;
-        }
-    }
-  
-    .footer__text{
-        text-align: center;
-        font-size: 1.2rem;
-        margin-top: 36px;
-        color:#100f0f;
-    }
-     .footer__bottom{
-            padding: 2px 0;
-            background-color: #a4141f;
-            font-size: 1.4rem;
-            
-         
-        }
+  .footer__text {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 36px;
+    color: #100f0f;
+  }
+  .footer__bottom {
+    padding: 2px 0;
+    background-color: #a4141f;
+    font-size: 1.4rem;
+  }
 }
-
-
-
-
-
-

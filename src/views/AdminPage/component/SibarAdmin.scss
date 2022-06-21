@@ -1,0 +1,66 @@
+.wrap-sibar {
+  height: 100vh;
+  background-color: blue;
+  width: 288px;
+  animation-duration: 300;
+  position: relative;
+  transition-duration: 300ms;
+  padding: 1.25rem;
+  .icon-wrap {
+    position: absolute;
+    cursor: pointer;
+    top: 2.25rem;
+    border-radius: 9999px;
+    border: 2px blue;
+    background: blue;
+    right: -0.75rem;
+    color: white;
+  }
+  .handle {
+    transform: rotate(180deg);
+  }
+  div {
+    column-gap: 1rem;
+
+    img {
+      max-width: none;
+      cursor: pointer;
+      transition-duration: 500ms;
+    }
+    .handle-360 {
+      transform: rotate(360deg);
+    }
+    h1 {
+      color: white;
+      transform-origin: left;
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      transition-duration: 300ms;
+    }
+    .handle-scale {
+      transform: scale(0);
+    }
+  }
+  ul {
+    padding: 0;
+    li {
+      color: white;
+      display: flex;
+      align-items: center;
+      column-gap: 1rem;
+      cursor: pointer;
+      border-radius: 0.375rem;
+      padding: 0.5rem;
+      &:hover {
+        background-color: rgb(114, 114, 226);
+      }
+      span {
+        transition-duration: 200ms;
+        transform-origin: left;
+      }
+    }
+  }
+}
+.handle-width {
+  width: 80px;
+}

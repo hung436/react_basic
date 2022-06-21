@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
-import AsNavFor from "../../Home/component/Sliders/Sliders";
-import FillProduct from "../component/FillProduct";
-import SibarProduct from "../component/SibarProduct";
-import ProductList from "../component/ProductList";
-import { useLocation, useHistory } from "react-router-dom";
-import { getProductFill } from "../../../services/productService";
-const queryString = require("query-string");
+import React, { useState, useEffect } from 'react';
+import { Container, Row } from 'react-bootstrap';
+import AsNavFor from '../../Home/component/Sliders/Sliders';
+import FillProduct from '../component/FillProduct';
+import SibarProduct from '../component/SibarProduct';
+import ProductList from '../component/ProductList';
+
+import { getProductFill } from '../../../services/productService';
+
 export default function ProductPage() {
   const [data, setData] = useState([]);
-  const [action, setAction] = useState("ALL");
-  const [category, setCategory] = useState("ALL");
+  const [action, setAction] = useState('ALL');
+  const [category, setCategory] = useState('ALL');
 
   useEffect(() => {
     const fetchapi = async () => {

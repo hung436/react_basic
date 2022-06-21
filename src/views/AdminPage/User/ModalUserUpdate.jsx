@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { updateUser, getAllUsers } from "../../../services/apiService";
+import React from "react";
+import { updateUser } from "../../../services/apiService";
 import { Formik } from "formik";
 import { Modal, Button, Row, FloatingLabel, Form } from "react-bootstrap";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 export default function ModalUserUpdate(props) {
-  // const formik = useFormik({
   const { id } = props;
   const handleSubmit = async (values) => {
     values = { ...values, id: id.id };
@@ -67,11 +66,7 @@ export default function ModalUserUpdate(props) {
                   errors,
                 }) => (
                   <Form noValidate onSubmit={handleSubmit}>
-                    <FloatingLabel
-                      controlId="floatingInput"
-                      label="UserName"
-                      className="mb-3"
-                    >
+                    <FloatingLabel label="UserName" className="mb-3">
                       <Form.Control
                         type="text"
                         name="username"
@@ -82,7 +77,7 @@ export default function ModalUserUpdate(props) {
                       />
                     </FloatingLabel>
                     <FloatingLabel
-                      controlId="floatingInput"
+                      controlId=""
                       label="Password"
                       className="mb-3"
                     >
@@ -96,12 +91,12 @@ export default function ModalUserUpdate(props) {
                       />
                     </FloatingLabel>
                     <FloatingLabel
-                      controlId="floatingInput"
+                      controlId=""
                       label="Nhập lại Password"
                       className="mb-3"
                     ></FloatingLabel>
                     <FloatingLabel
-                      controlId="floatingInput"
+                      controlId=""
                       label="First Name"
                       className="mb-3"
                     >
@@ -115,7 +110,7 @@ export default function ModalUserUpdate(props) {
                       />
                     </FloatingLabel>
                     <FloatingLabel
-                      controlId="floatingInput"
+                      controlId=""
                       label="Last Name"
                       className="mb-3"
                     >
@@ -129,7 +124,7 @@ export default function ModalUserUpdate(props) {
                       />
                     </FloatingLabel>
                     <FloatingLabel
-                      controlId="floatingInput"
+                      controlId=""
                       label="Address"
                       className="mb-3"
                     >
