@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../Cart/cartSlice';
 import { openModal } from '../../../Auth/userSlice';
 import './ProductItem.scss';
+import { addFavorites } from '../../../../services/userService';
 import { toast } from 'react-toastify';
-export default function ProductItem(props) {
+
+function ProductItem(props) {
   const { item } = props;
+  const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.current);
 
@@ -22,19 +25,19 @@ export default function ProductItem(props) {
         idProduct: item.id,
         quantity: 1,
         price: item.price,
-        priceAfterDiscount: item.discount,
+        priceAfterDiscount: item.price,
         name: item.name,
       });
 
-      // if (isPromo && priceAfterDiscount) {
-      //   action = addToCart({
-      //     idProduct: product.id,
-      //     quantity,
-      //     price,
-      //     priceAfterDiscount: priceAfterDiscount,
-      //     name: product.name,
-      //   });
-      // }
+      if (isPromo && priceAfterDiscount) {
+        action = addToCart({
+          idProduct: item.id,
+          quantity: 1,
+          price: item.price,
+          priceAfterDiscount: item.discount,
+          name: item.name,
+        });
+      }
       dispatch(action);
       toast.success('Thêm vào giỏ hàng thành công!');
       return;
@@ -42,6 +45,19 @@ export default function ProductItem(props) {
     toast.warn('Đăng nhập để thêm vào giỏ hàng!');
     const action = openModal();
     dispatch(action);
+  };
+  const handleAddFavorite = () => {
+    (async function () {
+      // showLoading();
+      try {
+        const res = await addFavorites({ id: item.id });
+        if (res.errorCode === 0) {
+          setIsFavorite(true);
+          toast.success('Đã yêu thích sản phẩm');
+        }
+      } catch (error) {}
+      // hideLoading();
+    })();
   };
   return (
     <div className="col-md-3 col-6 mb-3">
@@ -73,7 +89,7 @@ export default function ProductItem(props) {
               </div>
             </li>
             <li>
-              <div>
+              <div onClick={handleAddFavorite}>
                 <i className="fa fa-heart" />
               </div>
             </li>
@@ -115,3 +131,4 @@ export default function ProductItem(props) {
     </div>
   );
 }
+export default ProductItem;

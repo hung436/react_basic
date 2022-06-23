@@ -3,7 +3,7 @@ import Navigate from './component/Navigate';
 import ModalLogin from '../../views/Auth/ModalLogin';
 import './Header.scss';
 import { NavDropdown, Navbar, Container, Nav } from 'react-bootstrap';
-import HeaderLogo from '../../assets/images/header-logo.svg';
+import HeaderLogo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ import { cartItemsCountSelector } from '../../views/Cart/selector';
 const Header = () => {
   const countCart = useSelector(cartItemsCountSelector);
   const user = useSelector((state) => state.user.current);
-  console.log(user);
+
   const modal = useSelector((state) => state.user.modalIsOpen);
   const handleClose = () => {
     const action = closeModal();
@@ -32,7 +32,7 @@ const Header = () => {
       <header className="sticky-top">
         <div className="container-fluid">
           <div className="row">
-            <div id="h_logo" className="col-12 col-lg-3 col-md-3 col-sm-12">
+            <div id="h_logo" className="col-12  col-md-3 col-sm-12">
               <Link to="/">
                 <img src={HeaderLogo} alt="logo" className="img-responsive" />
               </Link>
@@ -75,10 +75,7 @@ const Header = () => {
               >
                 <NavDropdown.Item className="text-dark bg-warning" disabled>
                   Xin chào
-                  <span className="text-primary">
-                    {' '}
-                    {" '" + user.name + "'"}
-                  </span>
+                  <span className="text-primary">{" '" + user.name + "'"}</span>
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
@@ -181,25 +178,28 @@ const Header = () => {
           </div>
           <Navbar.Collapse
             id="basic-navbar-nav"
-            className="justify-content-center "
+            className="justify-content-center"
+            style={{
+              textAlign: 'center',
+            }}
           >
             <Nav variant="pills" defaultActiveKey="/home">
-              <Nav.Item>
+              <Nav.Item style={{ width: '200px' }}>
                 <Nav.Link as={Link} eventKey="/home" to="/">
                   Home
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item style={{ width: '200px' }}>
                 <Nav.Link as={Link} to={'/product'} eventKey="/product">
                   Sản phẩm
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item style={{ width: '200px' }}>
                 <Nav.Link as={Link} to={'/cart'} eventKey="/cart">
                   Giỏ hàng
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
+              <Nav.Item style={{ width: '200px' }}>
                 <Nav.Link as={Link} to={'about'} eventKey="about">
                   Về chúng tôi
                 </Nav.Link>

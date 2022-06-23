@@ -28,6 +28,7 @@ export const login = createAsyncThunk('auth/login', async (payload) => {
 });
 
 const initialState = {
+  isLogin: false,
   modalIsOpen: false,
   current: JSON.parse(localStorage.getItem(StorageKeys.USER)) || null,
 };
@@ -68,13 +69,13 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      if (action.payload.errorCode === 0) {
-        const user = {
+      if (action.payload.error === 0) {
+        let user = {
           name: action.payload.username,
-
           id: action.payload.userID,
           access_token: action.payload.accessToken,
         };
+
         state.current = user;
       }
     },

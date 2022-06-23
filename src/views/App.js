@@ -18,7 +18,7 @@ function App() {
         <Route path="/admin" component={AdminPage} />
         <Route>
           <Header />
-          <main>
+          <main className="app">
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/cart" component={Cart} />

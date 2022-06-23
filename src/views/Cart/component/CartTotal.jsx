@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useHistory, useLocation, useRouteMatch } from "react-router";
-import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { cartDiscountSelector, cartTotalSelector } from "../selector";
-import { order } from "../../../services/userService";
-import { useDispatch } from "react-redux";
-import { paymentSuccess } from "../cartSlice";
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { cartDiscountSelector, cartTotalSelector } from '../selector';
+import { order } from '../../../services/userService';
+import { useDispatch } from 'react-redux';
+import { paymentSuccess } from '../cartSlice';
 
 function CartTotal({ showLoading, hideLoading }) {
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ function CartTotal({ showLoading, hideLoading }) {
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/cart/confirm") setIsConfirm(true);
+    if (location.pathname === '/cart/confirm') setIsConfirm(true);
     else setIsConfirm(false);
 
-    if (location.pathname === "/cart/success") setIsSuccess(true);
+    if (location.pathname === '/cart/success') setIsSuccess(true);
     else setIsSuccess(false);
   }, [location.pathname]);
 
@@ -53,7 +53,7 @@ function CartTotal({ showLoading, hideLoading }) {
 
       const dataSend = {
         total: price,
-        payment_method: "Cash on Delivery",
+        payment_method: 'Cash on Delivery',
         status: 1,
         address_id: user.addressId,
         products: [...cartTotal],
@@ -64,14 +64,14 @@ function CartTotal({ showLoading, hideLoading }) {
         if (res.errorCode === 0) {
           const action = paymentSuccess();
           dispatch(action);
-          toast.success("Đặt hàng thành công!");
+          toast.success('Đặt hàng thành công!');
           history.replace(`${path.url}/success/${res.id}`);
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      toast.error("Vui lòng cập nhật thông tin đặt hàng");
+      toast.error('Vui lòng cập nhật thông tin đặt hàng');
     }
   };
 
@@ -83,9 +83,9 @@ function CartTotal({ showLoading, hideLoading }) {
         <h5 className="text-uppercase">Tạm tính</h5>
         <h5>
           {price &&
-            (price + (discount || 0)).toLocaleString("it-IT", {
-              style: "currency",
-              currency: "VND",
+            (price + (discount || 0)).toLocaleString('it-IT', {
+              style: 'currency',
+              currency: 'VND',
             })}
         </h5>
       </div>
@@ -93,13 +93,13 @@ function CartTotal({ showLoading, hideLoading }) {
         <h5 className="text-uppercase">Giảm giá</h5>
         <h5>
           {discount &&
-            discount.toLocaleString("it-IT", {
-              style: "currency",
-              currency: "VND",
+            discount.toLocaleString('it-IT', {
+              style: 'currency',
+              currency: 'VND',
             })}
         </h5>
       </div>
-      <h5 className="text-uppercase mb-3">Shipping</h5>
+      {/* <h5 className="text-uppercase mb-3">Shipping</h5>
       <div className="mb-4 pb-2">
         <select className="select">
           <option value={1}>Standard-Delivery- €5.00</option>
@@ -107,7 +107,7 @@ function CartTotal({ showLoading, hideLoading }) {
           <option value={3}>Three</option>
           <option value={4}>Four</option>
         </select>
-      </div>
+      </div> */}
       {isSuccess || isConfirm || (
         <>
           <h5 className="text-uppercase mb-3">Mã giảm giá</h5>
@@ -133,9 +133,9 @@ function CartTotal({ showLoading, hideLoading }) {
         <div>
           <h5>
             {price &&
-              price.toLocaleString("it-IT", {
-                style: "currency",
-                currency: "VND",
+              price.toLocaleString('it-IT', {
+                style: 'currency',
+                currency: 'VND',
               })}
           </h5>
           <span>(Đã bao gồm VAT nếu có)</span>
@@ -148,7 +148,7 @@ function CartTotal({ showLoading, hideLoading }) {
             data-mdb-ripple-color="dark"
             onClick={handleClick}
           >
-            {!isConfirm ? "TIẾN HÀNH ĐẶT HÀNG" : "XÁC NHẬN THANH TOÁN"}
+            {!isConfirm ? 'TIẾN HÀNH ĐẶT HÀNG' : 'XÁC NHẬN THANH TOÁN'}
           </button>
           <button
             className="btn btn-dark btn-block"

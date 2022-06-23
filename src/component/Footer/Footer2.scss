@@ -69,14 +69,16 @@
   }
 
   .footer__text {
+    align-items: center;
     text-align: center;
     font-size: 1.2rem;
-    margin-top: 36px;
-    color: #100f0f;
+
+    color: white;
   }
   .footer__bottom {
     padding: 2px 0;
     background-color: #a4141f;
+
     font-size: 1.4rem;
   }
 }

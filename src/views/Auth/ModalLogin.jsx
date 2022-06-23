@@ -1,10 +1,11 @@
-import React from "react";
-import { Modal, Button, Form, Tabs, Tab } from "react-bootstrap";
-import Login from "./Login";
-import { useDispatch } from "react-redux";
-import { login } from "./userSlice";
-import { toast } from "react-toastify";
-import { unwrapResult } from "@reduxjs/toolkit";
+import React from 'react';
+import { Modal, Button, Form, Tabs, Tab } from 'react-bootstrap';
+import Login from './Login';
+import Register from './Register';
+import { useDispatch } from 'react-redux';
+import { login } from './userSlice';
+import { toast } from 'react-toastify';
+import { unwrapResult } from '@reduxjs/toolkit';
 function ModalLogin(props) {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
@@ -12,7 +13,7 @@ function ModalLogin(props) {
     let data = await dispatch(action);
     data = await unwrapResult(data);
     if (data.error === 0) {
-      toast.success("Đặng nhập thành công!");
+      toast.success('Đặng nhập thành công!');
       props.modalClose();
     } else {
       toast.warning(data.message);
@@ -34,7 +35,7 @@ function ModalLogin(props) {
               <Login onSubmit={handleSubmit} />
             </Tab>
             <Tab eventKey="register" title="Đăng kí">
-              Đăng kí
+              <Register />
             </Tab>
           </Tabs>
         </Modal.Body>

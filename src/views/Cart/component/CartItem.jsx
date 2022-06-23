@@ -1,9 +1,9 @@
-import { getProductByID } from "../../../services/productService";
-import Quantity from "../../../component/Quantity";
-import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { deleteItemCart } from "../cartSlice";
+import { getProductByID } from '../../../services/productService';
+import Quantity from '../../../component/Quantity';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteItemCart } from '../cartSlice';
 
 function CartItem({ item, onChange }) {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function CartItem({ item, onChange }) {
             <img
               src={
                 process.env.REACT_APP_BACKEND_URL +
-                "/uploads/" +
+                '/uploads/' +
                 product.image_link
               }
               className="img-fluid rounded-3"
@@ -55,26 +55,26 @@ function CartItem({ item, onChange }) {
             />
           </Link>
         </div>
-        <div className="col-md-3 col-lg-3 col-xl-3">
+        <div className="col-md-3 ">
           {/* <h6 className="text-muted">Shirt</h6> */}
           <h6 className="text-black mb-0">{product.name}</h6>
         </div>
-        <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+        <div className="col-md-3 d-flex">
           <Quantity count={item.quantity} onChange={handleQuantityChange} />
         </div>
         <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
           <h6 className="mb-0">
             {isPromo
               ? (item.priceAfterDiscount * item.quantity).toLocaleString(
-                  "it-IT",
+                  'it-IT',
                   {
-                    style: "currency",
-                    currency: "VND",
+                    style: 'currency',
+                    currency: 'VND',
                   }
                 )
-              : (item.price * item.quantity).toLocaleString("it-IT", {
-                  style: "currency",
-                  currency: "VND",
+              : (item.price * item.quantity).toLocaleString('it-IT', {
+                  style: 'currency',
+                  currency: 'VND',
                 })}
           </h6>
         </div>

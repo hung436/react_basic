@@ -4,10 +4,19 @@ header {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding:20px;
- 
+  padding: 20px;
+
   .row {
- 
+    align-items: center;
+    #h_logo {
+      display: flex;
+      justify-content: center;
+      img {
+        height: 100px;
+        width: 250px;
+        // background: #fff;
+      }
+    }
     #h_search {
       display: flex;
       height: 30%;
@@ -19,13 +28,10 @@ header {
       }
     }
     #h_cart {
- 
-    
-      a{
-      
+      a {
         color: #fff !important;
         text-decoration: none;
-      
+
         text-align: end;
         display: flex;
         i {
@@ -44,10 +50,8 @@ header {
           align-items: center;
           font: 15px Arial, sans-serif;
           transform: translateY(5px);
-        
+        }
       }
-    }
-     
     }
     #h_login {
       font-size: 30px;
