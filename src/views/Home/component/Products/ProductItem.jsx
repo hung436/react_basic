@@ -34,7 +34,7 @@ function ProductItem(props) {
           idProduct: item.id,
           quantity: 1,
           price: item.price,
-          priceAfterDiscount: item.discount,
+          priceAfterDiscount: priceAfterDiscount,
           name: item.name,
         });
       }

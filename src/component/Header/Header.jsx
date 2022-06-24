@@ -11,6 +11,7 @@ import { logout, openModal, closeModal } from '../../views/Auth/userSlice';
 import { toast } from 'react-toastify';
 import { cartItemsCountSelector } from '../../views/Cart/selector';
 const Header = () => {
+  const [SearchInp, setSearchInp] = useState('');
   const countCart = useSelector(cartItemsCountSelector);
   const user = useSelector((state) => state.user.current);
 
@@ -45,10 +46,12 @@ const Header = () => {
                 type="search"
                 placeholder="Nhập tên sản phẩm"
                 className="form-control"
+                value={SearchInp}
+                onChange={(e) => setSearchInp(e.target.value)}
               />
-              <div className="btn btn-primary">
+              <Link to={`/search/${SearchInp}`} className="btn btn-primary">
                 <i className="fa-solid fa-magnifying-glass"></i>
-              </div>
+              </Link>
             </div>
             <div
               className="col-12 col-lg-2 col-md-2 col-sm-12 d-none d-md-flex mt-2 justify-content-end"

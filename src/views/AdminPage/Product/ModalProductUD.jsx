@@ -7,7 +7,7 @@ import draftToHtml from 'draftjs-to-html';
 import { convertToRaw } from 'draft-js';
 import { EditorState } from 'draft-js';
 import TextEditor from '../../../component/form-control/TextEditor';
-
+import { getCategory } from '../../../services/cateService';
 export default function ModalProductUD(props) {
   const { id } = props;
   const imgRef = useRef();
@@ -15,11 +15,18 @@ export default function ModalProductUD(props) {
   const [imgProduct, setImgProduct] = useState();
   const [errorImage, setErrorImage] = useState(null);
   const [isEditImg, setIsEditImg] = useState(false);
+  const [Cate, setCate] = useState([]);
   const handleInputImgChange = () => {
     setIsEditImg(true);
     const file = imgRef.current.files[0];
     file.preview = URL.createObjectURL(file);
     setImgProduct(file);
+  };
+  const handleCategory = async () => {
+    let res = await getCategory();
+    if (res.errorCode === 0) {
+      setCate(res.data);
+    }
   };
   useEffect(() => {
     const handle = () => {
@@ -115,10 +122,14 @@ export default function ModalProductUD(props) {
                         defaultValue={values.category}
                         onChange={handleChange}
                         isValid={touched.category && !errors.category}
+                        onClick={handleCategory}
                       >
                         <option>Chọn danh mục</option>
-                        <option value="1">Điện thoại</option>
-                        <option value="2">Laptop</option>
+                        {Cate.map((item, index) => (
+                          <option key={index} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
                       </Form.Select>
                     </FloatingLabel>
                     <FloatingLabel

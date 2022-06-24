@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { login } from './userSlice';
 import { toast } from 'react-toastify';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { createNewUser } from '../../services/apiService';
 function ModalLogin(props) {
   const dispatch = useDispatch();
   const handleSubmit = async (values) => {
@@ -17,6 +18,15 @@ function ModalLogin(props) {
       props.modalClose();
     } else {
       toast.warning(data.message);
+    }
+  };
+  const handleCreateUser = async (values) => {
+    let res = await createNewUser(values);
+    if (res.errorCode === 0) {
+      toast.success('Đặng kí thành công!');
+      props.modalClose();
+    } else {
+      toast.warning(res.message);
     }
   };
   return (
@@ -35,7 +45,7 @@ function ModalLogin(props) {
               <Login onSubmit={handleSubmit} />
             </Tab>
             <Tab eventKey="register" title="Đăng kí">
-              <Register />
+              <Register onSubmit={handleCreateUser} />
             </Tab>
           </Tabs>
         </Modal.Body>

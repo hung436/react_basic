@@ -3,6 +3,7 @@ import { Table, ButtonGroup } from 'react-bootstrap';
 import { getCategory, addCategory } from '../../../services/cateService';
 import EditCate from './component/EditCate';
 import { toast } from 'react-toastify';
+import { deleteCategory } from '../../../services/cateService';
 export default function Category() {
   const [Cate, setCate] = useState([]);
   const [InpAdd, setInpAdd] = useState('');
@@ -15,6 +16,14 @@ export default function Category() {
   });
   const AddCate = async () => {
     let res = await addCategory(InpAdd);
+    if (res.errorCode === 0) {
+      toast.success('Thêm thành công');
+    } else {
+      toast.warn(res.message);
+    }
+  };
+  const deleteCate = async (id) => {
+    let res = await deleteCategory(id);
     if (res.errorCode === 0) {
       toast.success('Thêm thành công');
     } else {
@@ -71,7 +80,7 @@ export default function Category() {
                       </button>
                       <button
                         className="btn btn-danger"
-                        // onClick={() => deleteProducts(p.id)}
+                        onClick={() => deleteCate(item.id)}
                       >
                         <i className="fa-solid fa-trash-can"></i>
                       </button>

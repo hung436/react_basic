@@ -8,4 +8,7 @@ let addCategory = (data) => {
 let editCategory = (id, name) => {
   return axios.put('/editcategory', { id: id, name: name });
 };
-export { getCategory, addCategory, editCategory };
+let deleteCategory = (id) => {
+  return axios.delete('/deletecategory', { data: { id: id } });
+};
+export { getCategory, addCategory, editCategory, deleteCategory };
