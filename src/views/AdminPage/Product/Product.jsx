@@ -39,31 +39,32 @@ export default function Product(props) {
       setCount(Count);
       if (res.errorCode === 0) {
         toast.success('Sửa sản phẩm thành công!');
+        getData();
       }
     } catch (err) {
       toast.error('Error');
     }
   };
-
+  const getData = async () => {
+    try {
+      const res = await getProduct(Page);
+      // mapData(res.data);
+      setProduct(res.data.rows);
+      setCount(res.data.count);
+    } catch (error) {
+      //   toast.error('Error');
+      //   dispatch(adminLogout());
+    }
+  };
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await getProduct(Page);
-        // mapData(res.data);
-        setProduct(res.data.rows);
-        setCount(res.data.count);
-      } catch (error) {
-        //   toast.error('Error');
-        //   dispatch(adminLogout());
-      }
-    })();
-  }, [Page, Count]);
+    getData();
+  }, [Page]);
 
   const deleteProducts = (id) => {
     if (window.confirm('Delete the item?')) {
       deleteProduct(id);
       toast.success('Đã xóa sản phẩm thành công!');
-      setCount(Count - 1);
+      getData();
     }
   };
   const convertText = (value) => {

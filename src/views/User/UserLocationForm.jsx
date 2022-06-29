@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import * as yup from "yup";
+import * as yup from 'yup';
 import {
   Form,
   Button,
@@ -9,25 +9,25 @@ import {
   InputGroup,
   Tooltip,
   OverlayTrigger,
-} from "react-bootstrap";
-import { Formik } from "formik";
+} from 'react-bootstrap';
+import { Formik } from 'formik';
 export default function UserLocationForm(props) {
   const { onSubmit, address } = props;
   const [addressItem, setAddressItem] = useState({
-    firstname: " ",
-    lastname: " ",
-    ward: " ",
-    street_name: " ",
-    district: " ",
-    city: " ",
-    email: " ",
-    numberphone: " ",
+    firstname: ' ',
+    lastname: ' ',
+    ward: ' ',
+    street_name: ' ',
+    district: ' ',
+    city: ' ',
+    email: ' ',
+    numberphone: ' ',
   });
   const schema = yup.object().shape({
-    city: yup.string().required("Vui lòng điền vào đây"),
-    ward: yup.string().required("Vui lòng điền vào đây"),
-    street_name: yup.string().required("Vui lòng điền vào đây"),
-    district: yup.string().required("Vui lòng điền vào đây"),
+    city: yup.string().required('Vui lòng điền vào đây'),
+    ward: yup.string().required('Vui lòng điền vào đây'),
+    street_name: yup.string().required('Vui lòng điền vào đây'),
+    district: yup.string().required('Vui lòng điền vào đây'),
   });
 
   useEffect(() => {
@@ -38,11 +38,11 @@ export default function UserLocationForm(props) {
     if (!onSubmit) return;
     onSubmit(values);
   };
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" name="toolip" {...props}>
-      Vui lòng vào Thông tin tài khoản để sửa
-    </Tooltip>
-  );
+  // const renderTooltip = (props) => (
+  //   <Tooltip id="button-tooltip" name="toolip" {...props}>
+  //     Vui lòng vào Thông tin tài khoản để sửa
+  //   </Tooltip>
+  // );
   return (
     <div>
       <Formik
@@ -73,54 +73,41 @@ export default function UserLocationForm(props) {
             <Row className="mb-3">
               <Form.Group as={Col} md="3" controlId="validationFormik01">
                 <Form.Label>First name</Form.Label>
-                <OverlayTrigger
-                  placement="right"
-                  delay={{ show: 250, hide: 400 }}
-                  overlay={renderTooltip}
-                >
-                  <Form.Control
-                    type="text"
-                    name="firstname"
-                    value={values.firstname}
-                    disabled
-                  />
-                </OverlayTrigger>
+
+                <Form.Control
+                  type="text"
+                  name="firstname"
+                  value={values.firstname}
+                  onChange={handleChange}
+                />
+
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="3" controlId="validationFormik02">
                 <Form.Label>Last name</Form.Label>
-                <OverlayTrigger
-                  placement="right"
-                  delay={{ show: 250, hide: 400 }}
-                  overlay={renderTooltip}
-                >
-                  <Form.Control
-                    type="text"
-                    name="lastname"
-                    value={values.lastname}
-                    disabled
-                  />
-                </OverlayTrigger>
+
+                <Form.Control
+                  type="text"
+                  name="lastname"
+                  value={values.lastname}
+                  onChange={handleChange}
+                />
+
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="3" controlId="validationFormikUsername">
                 <Form.Label>Email</Form.Label>
                 <InputGroup hasValidation>
                   <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                  <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={renderTooltip}
-                  >
-                    <Form.Control
-                      type="text"
-                      placeholder="Email"
-                      aria-describedby="inputGroupPrepend"
-                      name="email"
-                      value={values.email}
-                      disabled
-                    />
-                  </OverlayTrigger>
+
+                  <Form.Control
+                    type="text"
+                    placeholder="Email"
+                    aria-describedby="inputGroupPrepend"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
                 </InputGroup>
               </Form.Group>
               <Form.Group as={Col} md="3" controlId="validationFormik05">
@@ -132,7 +119,6 @@ export default function UserLocationForm(props) {
                   value={values.numberphone}
                   onChange={handleChange}
                   isInvalid={!!errors.numberphone}
-                  disabled
                 />
 
                 <Form.Control.Feedback type="invalid">

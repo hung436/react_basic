@@ -90,9 +90,7 @@ const Header = () => {
                 <NavDropdown.Item as={Link} to="/user">
                   Thông tin cá nhân
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/user/local">
-                  Địa chỉ giao hàng
-                </NavDropdown.Item>
+
                 <NavDropdown.Item
                   onClick={() => toast.warning('Tính năng đang phất triển')}
                 >
@@ -157,9 +155,7 @@ const Header = () => {
                 <NavDropdown.Item as={Link} to="/user">
                   Thông tin cá nhân
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/user/local">
-                  Địa chỉ giao hàng
-                </NavDropdown.Item>
+
                 <NavDropdown.Item
                   onClick={() => toast.warning('Tính năng đang phất triển')}
                 >
@@ -200,6 +196,11 @@ const Header = () => {
               <Nav.Item style={{ width: '200px' }}>
                 <Nav.Link as={Link} to={'/cart'} eventKey="/cart">
                   Giỏ hàng
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item style={{ width: '200px' }}>
+                <Nav.Link as={Link} to={'/favorite'} eventKey="/favorite">
+                  Yêu Thích
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item style={{ width: '200px' }}>

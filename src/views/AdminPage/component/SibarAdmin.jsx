@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './SibarAdmin.scss';
+import { adminLogout } from '../adminSlice';
+import { useDispatch } from 'react-redux';
 import {
   AiOutlineLeftCircle,
   AiFillDashboard,
@@ -13,7 +15,11 @@ const SibarAdmin = () => {
   const [open, setOpen] = useState(true);
   const history = useHistory();
   console.log(history);
-
+  const dispatch = useDispatch();
+  const [Active, setActive] = useState(0);
+  const handleLogout = () => {
+    dispatch(adminLogout());
+  };
   const Menus = [
     { title: 'Dashboard', src: AiFillDashboard, path: '/admin' },
 
@@ -59,6 +65,9 @@ const SibarAdmin = () => {
             </li>
           );
         })}
+        <button className="btn btn-primary" onClick={handleLogout}>
+          Log out
+        </button>
       </ul>
     </div>
   );

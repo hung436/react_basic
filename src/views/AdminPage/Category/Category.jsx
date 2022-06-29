@@ -23,11 +23,13 @@ export default function Category() {
     }
   };
   const deleteCate = async (id) => {
-    let res = await deleteCategory(id);
-    if (res.errorCode === 0) {
-      toast.success('Thêm thành công');
-    } else {
-      toast.warn(res.message);
+    if (window.confirm('Bạn có muốn xóa danh mục này ?')) {
+      let res = await deleteCategory(id);
+      if (res.errorCode === 0) {
+        toast.success('Xóa thành công');
+      } else {
+        toast.warn(res.message);
+      }
     }
   };
   return (

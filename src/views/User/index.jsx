@@ -1,9 +1,9 @@
-import React from "react";
-import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Order from "./Order";
-import UserInfo from "./UserInfo";
-import UserLocal from "./UserLocal";
+import React from 'react';
+import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Order from './Order';
+
+import UserLocal from './UserLocal';
 export default function User() {
   const isLoggedIn = useSelector((state) => state.user.current);
   const { path } = useRouteMatch();
@@ -17,7 +17,7 @@ export default function User() {
             <>
               <section
                 className="h-100 h-custom"
-                style={{ backgroundColor: "#d2c9ff" }}
+                style={{ backgroundColor: '#d2c9ff' }}
               >
                 <div className="container py-5 h-100">
                   <div className="row d-flex justify-content-center align-items-center h-100">
@@ -32,23 +32,18 @@ export default function User() {
                               <Route
                                 path={`${path}`}
                                 exact
-                                component={UserInfo}
+                                component={UserLocal}
                               />
 
                               <Route
                                 path={`${path}/information`}
                                 exact
-                                component={UserInfo}
+                                component={UserLocal}
                               />
                               <Route
                                 path={`${path}/order`}
                                 exact
                                 component={Order}
-                              />
-                              <Route
-                                path={`${path}/local`}
-                                exact
-                                component={UserLocal}
                               />
                             </div>
                           </div>

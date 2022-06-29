@@ -11,6 +11,7 @@ import About from './About/About';
 import { Switch, Route } from 'react-router';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Search from './Search';
+import Favorite from './Favorite/Favorite';
 function App() {
   return (
     <div>
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" exact component={Home} />
               <Route path="/search/:keyword" component={Search} />
               <Route path="/cart" component={Cart} />
+              <Route path="/favorite" component={Favorite} />
               <Route path="/product" component={Product} />
               <Route path="/user" component={User} />
               <Route path="/about" exact component={About} />

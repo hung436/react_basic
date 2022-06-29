@@ -24,6 +24,7 @@ axiosClient.interceptors.request.use(
       '/getfavoriteproduct',
       '/detelefavoriteproduct',
       '/changeaddress',
+      '/getallfavorite',
     ];
 
     const dynamicURL = ['/user/favorites/'];
